@@ -11,7 +11,6 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>t1', function()
   vim.cmd(':ToggleTerm 1')
 end, { silent = true, desc = '[T]erm [T]oggle 1' })
 
-
 vim.keymap.set({ 'n', 'v' }, '<Leader>t2', function()
   vim.cmd(':ToggleTerm 2')
 end, { silent = true, desc = '[T]erm [T]oggle 2' })
@@ -30,6 +29,10 @@ end, { silent = true, desc = '[T]erm [T]oggle 5' })
 
 
 -- Floating terminals
+vim.keymap.set({ 'n', 'v' }, '<Leader>tf1', function()
+  vim.cmd(':ToggleTerm direction=float 1')
+end, { silent = true, desc = '[T]erm [T]oggle 1' })
+
 vim.keymap.set({ 'n', 'v' }, '<Leader>tf2', function()
   vim.cmd(':ToggleTerm direction=float 2')
 end, { silent = true, desc = '[T]erm [T]oggle 2' })
