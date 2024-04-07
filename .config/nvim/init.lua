@@ -113,8 +113,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
+local telescope = require('telescope')
+local teleConfig = require('telescope.config')
+local vimgrep_arguments = { unpack(teleConfig.values.vimgrep_arguments) }
+table.insert(vimgrep_arguments, '--hidden')
+table.insert(vimgrep_arguments, '--iglob')
+table.insert(vimgrep_arguments, '!**/.git/*')
+table.insert(vimgrep_arguments, '--vimgrep')
+table.insert(vimgrep_arguments, '--follow')
+table.insert(vimgrep_arguments, '-l')
+
+telescope.setup {
   defaults = {
+    vimgrep_arguments = vimgrep_arguments,
     mappings = {
       i = {
         ['<C-u>'] = false,
