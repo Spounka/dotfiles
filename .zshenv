@@ -11,4 +11,4 @@ export EDITOR=/usr/bin/nvim
 
 
 export PATH=$PATH:"$HOME/.config/rofi/scripts"
-export NAZIH="Dela3a"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
