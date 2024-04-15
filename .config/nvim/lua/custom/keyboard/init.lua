@@ -52,10 +52,6 @@ vim.keymap.set({ 'n', 'v' }, ';nt', function()
   vim.cmd(':Neotree focus')
 end, { silent = true, desc = "Neo-Tree Toggle with focus" })
 
-vim.keymap.set({ 'n', 'v' }, ';nb', function()
-  vim.cmd(':Neotree show buffers toggle')
-end, { silent = true, desc = "Neo-Tree toggle buffers" })
-
 require('custom.keyboard.fugitive')
 require('custom.keyboard.debugging')
 require('custom.keyboard.toggleterm')
