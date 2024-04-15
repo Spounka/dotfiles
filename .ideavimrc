@@ -1,10 +1,5 @@
 let mapleader=" "
 
-set surround
-set multiple-cursors
-set commentar
-set easymotion
-set exchange
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'terryma/vim-multiple-cursors'
@@ -12,6 +7,16 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-sensible'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'chrisbra/matchit'
+
+
+set surround
+set multiple-cursors
+set commentar
+set easymotion
+set exchange
 
 
 set nu rnu
@@ -47,6 +52,12 @@ set smartcase
 set vb
 set ideastatusicon=gray
 
+set ideajoin
+set which-key
+set tiemoutlen=3000
+
+set g:argtextobj_pairs = "[:],(:),{:},<:>"
+
 
 " pasting from clipboard
 map ;v "*p
@@ -66,7 +77,3 @@ map <leader>f <Action>(ReformatCode)
 nmap <silent> cn :bn<CR>
 nmap <silent> cp :bp<CR>
 nmap <silent> cd :bd<CR>
-
-set ideajoin
-set which-key
-set tiemoutlen=3000
