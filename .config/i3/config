@@ -52,6 +52,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 bindsym $mod+shift+m exec --no-startup-id $terminal -e cmus
 bindsym $mod+shift+b exec --no-startup-id $browser
+bindsym $mod+shift+z exec --no-startup-id zenkit
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
