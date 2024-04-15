@@ -67,12 +67,19 @@ map ;c <S-V>"*y<CR>
 map ;;c <S-V>"+y<CR>
 
 
-map <leader>d <Action>(Debug)
+map <leader>ed <Action>(Debug)
+map <leader>er <Action>(Run)
+map <leader>eb <Action>(Build)
+
+map <leader><leader>u <Action>(ShowUsages)
+map <leader><leader>r <Action>(RefactoringMenu)
+
 map <leader>r <Action>(RenameElement)
 map <leader>] <Action>(GotoNextError)
 map <leader>[ <Action>(GotoPreviousError)
-map <leader>b <Action>(Build)
 map <leader>f <Action>(ReformatCode)
+
+map ;ns <Action>(ActivateProjectToolWindow)
 
 nmap <silent> cn :bn<CR>
 nmap <silent> cp :bp<CR>
