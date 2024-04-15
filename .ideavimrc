@@ -1,0 +1,72 @@
+let mapleader=" "
+
+set surround
+set multiple-cursors
+set commentar
+set easymotion
+set exchange
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-sensible'
+
+
+set nu rnu
+set autoindent
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set copyindent
+
+set ignorecase
+set ruler
+set history=1000
+
+set hidden
+
+set nobackup
+set nowritebackup
+
+set cmdheight=2
+
+set updatetime=300
+set shortmess+=c
+
+set signcolumn=yes
+set clipboard=unnamedplus
+
+set spelllang=en_gb
+set linebreak
+
+set incsearch " Shows search as you type
+set smartcase
+set vb
+set ideastatusicon=gray
+
+
+" pasting from clipboard
+map ;v "*p
+map ;;v "+p
+
+map ;c <S-V>"*y<CR>
+map ;;c <S-V>"+y<CR>
+
+
+map <leader>d <Action>(Debug)
+map <leader>r <Action>(RenameElement)
+map <leader>] <Action>(GotoNextError)
+map <leader>[ <Action>(GotoPreviousError)
+map <leader>b <Action>(Build)
+map <leader>f <Action>(ReformatCode)
+
+nmap <silent> cn :bn<CR>
+nmap <silent> cp :bp<CR>
+nmap <silent> cd :bd<CR>
+
+set ideajoin
+set which-key
+set tiemoutlen=3000
