@@ -1,0 +1,34 @@
+# bash aliases
+
+# system commands fixes
+alias sudo='sudo '
+alias ls="ls --group-directories-first --color=auto "
+alias cp="cp -vi"
+alias rm="rm -vi"
+alias mv="mv -vi"
+
+# system commands aliases
+alias cls="clear"
+alias r="ranger"
+alias q="exit"
+alias l="ls "
+alias ll="ls -al "
+
+# abbreviations
+alias qb="qutebrowser"
+alias p="python3"
+alias p2="python"
+alias pi="pip3"
+alias dup='docker compose up '
+alias dcd='docker compose down '
+
+
+# personal scripts
+alias pinger="pinger.sh"
+alias clip="~/.scripts/clip.sh"
+alias b="source ~/.scripts/back.sh"
+alias screenshot="/home/spounka/.scripts/screenshot.sh"
+alias nmsp="~/.scripts/wifi.sh Spounka"
+alias nmaz="~/.scripts/wifi.sh D-AZZEDINE"
+alias armorpaints="armorpaint"
+
