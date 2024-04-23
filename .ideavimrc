@@ -81,6 +81,6 @@ map <leader>f <Action>(ReformatCode)
 
 map ;ns <Action>(ActivateProjectToolWindow)
 
-nmap <silent> cn :bn<CR>
-nmap <silent> cp :bp<CR>
-nmap <silent> cd :bd<CR>
+nmap <silent> <leader>cn :bn<CR>
+nmap <silent> <leader>cp :bp<CR>
+nmap <silent> <leader>cd :bd<CR>
