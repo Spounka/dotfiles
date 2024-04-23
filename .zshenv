@@ -7,6 +7,7 @@
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.scripts:$PATH
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.npm-global/bin
 export EDITOR=/usr/bin/nvim
 
 
