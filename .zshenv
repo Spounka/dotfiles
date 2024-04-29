@@ -8,8 +8,8 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.scripts:$PATH
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.npm-global/bin
+export PATH=$PATH:$HOME/.config/emacs/bin
 export EDITOR=/usr/bin/nvim
-
 
 export PATH=$PATH:"$HOME/.config/rofi/scripts"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
