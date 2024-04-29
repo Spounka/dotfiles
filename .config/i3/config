@@ -37,6 +37,7 @@ exec --no-startup-id playerctld daemon
 exec --no-startup-id ~/.screenlayout/two-screens.sh
 exec --no-startup-id copyq
 exec --no-startup-id protonvpn-app
+exec --no-startup-id emacs --daemon
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -53,6 +54,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+shift+m exec --no-startup-id $terminal -e cmus
 bindsym $mod+shift+b exec --no-startup-id $browser
 bindsym $mod+shift+z exec --no-startup-id zenkit
+bindsym $mod+shift+d exec --no-startup-id emcl
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
