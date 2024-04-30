@@ -29,5 +29,14 @@ return {
   },
   {
     'rmehri01/onenord.nvim',
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 998,
+    opts = {},
+    config = function()
+      vim.cmd.colorscheme 'tokyonight-night'
+    end,
   }
 }
