@@ -8,6 +8,16 @@
 - [[#display][Display]]
   - [[#font][Font]]
   - [[#theme][Theme]]
+  - [[#vertico][Vertico]]
+  - [[#tabs][Tabs]]
+- [[#keymaps][Keymaps]]
+  - [[#dired][Dired]]
+- [[#plugins][Plugins]]
+  - [[#org-mode][Org mode]]
+  - [[#tree-sitter][Tree-sitter]]
+  - [[#python-pyright][Python Pyright]]
+  - [[#python-venv-auto-activate][Python Venv auto activate]]
+  - [[#codeium][Codeium]]
 
 * Peronal Meta data
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -18,11 +28,8 @@
 ;; change `org-directory'. It must be set before org loads!
 
 
-#+begin_src emacs-lisp
 
-;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-(setq org-directory "~/org/")
-
+#+begin_src elisp
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Nazih Boudaakkar"
@@ -47,11 +54,19 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-#+begin_src emacs-lisp
-(setq doom-font         (font-spec :family "FiraCode Nerd Font" :size 18 :weight 'regular)
-      doom-big-font     (font-spec :family "CodeNewRoman Nerd Font" :size 18 :weight 'semi-bold)
-      doom-serif-font   (font-spec :family "FiraCode Nerd Font" :size 18 :weight 'regular)
-)
+
+#+begin_src elisp
+(setq doom-font                 (font-spec :family "FiraCode Nerd Font" :size 17)
+      doom-big-font             (font-spec :family "FiraCode Nerd Font" :size 23)
+      doom-variable-pitch-font  (font-spec :family "SauceCodePro Nerd Font" :size 20)
+      doom-serif-font           (font-spec :family "Liberation Serif" :size 17))
+
+(after! doom-themes
+        (setq   doom-themes-enable-bold t
+                doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
 #+end_src
 
 ** Theme
@@ -63,7 +78,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-#+begin_src emacs-lisp
+#+begin_src elisp
 (setq doom-theme 'doom-tokyo-night)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -103,3 +118,133 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+** Vertico
+
+#+begin_src elisp
+
+(require 'vertico-posframe)
+(vertico-posframe-mode 1)
+
+(setq vertico-posframe-parameters
+     '((left-fringe . 8)
+       (right-fringe . 8)))
+#+end_src
+** Tabs
+#+begin_src emacs-lisp
+
+(setq-default tab-width 4)
+
+#+end_src
+
+* Keymaps
+** Dired
+*** Add file
+#+begin_src emacs-lisp
+(after! dired
+  (map! :map dired-mode-map
+        :leader "f n" #'dired-create-empty-file))
+#+end_src
+
+* Plugins
+** Org mode
+*** CSS
+#+begin_src elisp
+
+;; Don't forget to add the following header at the top of the org file
+;; #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+(setq org-html-htmlize-output-type 'css)
+
+#+end_src
+*** Org templates
+#+begin_src emacs-lisp
+(after! org
+  ;; Personal tasks
+  (setq org-capture-templates
+        '(("p" "Personal TODO" entry
+           (file+headline "~/Dropbox/org/personal.org" "Tasks")
+           "* TODO %?\nSCHEDULED: %^t\nDEADLINE: %^t\n%a\n")
+          ("P" "Personal TODO with Category" entry
+           (file+headline "~/Dropbox/org/personal.org" "Tasks")
+           "* TODO %?\nSCHEDULED: %^t\nDEADLINE: %^t\n%a\n%i\nCategory: %^{Category}\n")))
+
+  ;; Freelance tasks
+  (setq org-capture-templates
+        (append org-capture-templates
+                '(("f" "Freelance TODO" entry
+                   (file+headline "~/Dropbox/org/freelance.org" "Tasks")
+                   "* TODO %?\nSCHEDULED: %^t\nDEADLINE: %^t\n%a\n")
+                  ("F" "Freelance TODO with Project" entry
+                   (file+headline "~/Dropbox/org/freelance.org" "Tasks")
+                   "* TODO %?\nSCHEDULED: %^t\nDEADLINE: %^t\n%a\n%i\nProject: %^{Project}\n")))))
+
+(setq org-agenda-files '("~/Dropbox/org/personal.org" "~/Dropbox/org/freelance.org"))
+#+end_src
+*** Dropbox Sync
+#+begin_src emacs-lisp
+(setq org-directory "~/Dropbox/org/")
+#+end_src
+
+** Tree-sitter
+#+begin_src emacs-lisp
+(setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+#+end_src
+** Python Pyright
+#+begin_src elisp
+
+;; (use-package lsp-pyright
+  ;; :hook (python-mode . (lambda ()
+                          ;; (require 'lsp-pyright)
+                          ;; (lsp))))  ; or lsp-deferred
+
+#+end_src
+
+** Python Venv auto activate
+#+begin_src elisp
+
+(use-package pyvenv
+  :config
+  (pyvenv-mode t)
+
+  ;; Set correct Python interpreter
+  (setq pyvenv-post-activate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python3")))))
+  (setq pyvenv-post-deactivate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter "python3")))))
+
+#+end_src
+** Codeium
+#+begin_src elisp
+
+(use-package company
+    :defer 0.1
+    :config
+    (global-company-mode t)
+    (setq-default
+        company-idle-delay 0.05
+        company-require-match nil
+        company-minimum-prefix-length 0
+
+        ;; get only preview
+        company-frontends '(company-preview-frontend)
+        ;; also get a drop down
+        ;; company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
+        ))
+
+#+end_src
