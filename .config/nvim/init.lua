@@ -32,6 +32,9 @@ vim.wo.rnu = true
 
 vim.cmd.set('expandtab')
 
+vim.cmd.set('tabstop=4')
+vim.cmd.set('shiftwidth=4')
+
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
