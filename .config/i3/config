@@ -59,6 +59,7 @@ bindsym $mod+shift+d exec --no-startup-id emcl
 bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
+bindsym $mod+slash exec --no-startup-id emoji-picker
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -241,6 +242,7 @@ for_window [class="Klipper"] floating enable; border none
 for_window [class="krunner"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [title="plasma-desktop"] floating enable; border none
+for_window [class="Emoji-picker"] floating enable; border none
 #for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position 1450px 20px
 #no_focus [class="plasmashell" window_type="notification"] 
 focus_on_window_activation none
