@@ -15,3 +15,4 @@ export PATH=$PATH:"$HOME/.config/rofi/scripts"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 export PATH="$HOME/go/bin:$PATH"
+export XDG_CURRENT_DESKTOP_GNOME
