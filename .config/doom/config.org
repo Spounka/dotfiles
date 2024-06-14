@@ -228,6 +228,13 @@
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
 
+** Company mode
+#+begin_src emacs-lisp
+
+(setq company-dabbrev-downcase 0)
+(setq company-idle-delay 0)
+
+
 #+end_src
 ** Codeium
 #+begin_src elisp
