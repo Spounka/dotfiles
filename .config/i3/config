@@ -56,6 +56,10 @@ bindsym $mod+shift+b exec --no-startup-id $browser
 bindsym $mod+shift+z exec --no-startup-id zenkit
 bindsym $mod+shift+d exec --no-startup-id emcl
 
+bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
+bindsym $mod+mod1+control+m scratchpad show
+bindsym $mod+shift+control+s move scratchpad
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
