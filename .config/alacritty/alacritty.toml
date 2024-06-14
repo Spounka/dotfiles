@@ -94,6 +94,5 @@ blue    = '#7da6ff'
 magenta = '#bb9af7'
 cyan    = '#0db9d7'
 white   = '#acb0d0'
-# Colors (Tokyo Night Storm variant)
-# Source https//github.com/zatchheems/tokyo-night-alacritty-theme
-
+# # Colors (Tokyo Night Storm variant)
+# # Source https//github.com/zatchheems/tokyo-night-alacritty-theme
