@@ -122,3 +122,7 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 export FLYCTL_INSTALL="/home/spounka/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
