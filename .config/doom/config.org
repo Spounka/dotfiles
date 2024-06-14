@@ -17,6 +17,7 @@
   - [[#tree-sitter][Tree-sitter]]
   - [[#python-pyright][Python Pyright]]
   - [[#python-venv-auto-activate][Python Venv auto activate]]
+  - [[#company-mode][Company mode]]
   - [[#codeium][Codeium]]
 
 * Peronal Meta data
@@ -206,10 +207,10 @@
 ** Python Pyright
 #+begin_src elisp
 
-;; (use-package lsp-pyright
-  ;; :hook (python-mode . (lambda ()
-                          ;; (require 'lsp-pyright)
-                          ;; (lsp))))  ; or lsp-deferred
+;(use-package lsp-pyright
+;  :hook (python-mode . (lambda ()
+;                          (require 'lsp-pyright)
+;                          (lsp))))  ; or lsp-deferred
 
 #+end_src
 
@@ -228,6 +229,7 @@
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
 
+#+end_src
 ** Company mode
 #+begin_src emacs-lisp
 
