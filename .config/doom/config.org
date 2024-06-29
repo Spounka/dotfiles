@@ -19,6 +19,8 @@
   - [[#python-venv-auto-activate][Python Venv auto activate]]
   - [[#company-mode][Company mode]]
   - [[#codeium][Codeium]]
+- [[#debuggin][Debuggin]]
+  - [[#dap-ui][DAP-UI]]
 
 * Peronal Meta data
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -263,4 +265,16 @@
         ;; company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
         ))
 
+#+end_src
+* Debuggin
+** DAP-UI
+#+begin_src emacs-lisp
+;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
+#+end_src
+*** Python
+#+begin_src emacs-lisp
+;; (require 'dap-python)
+;; if you installed debugpy, you need to set this
+;; https://github.com/emacs-lsp/dap-mode/issues/306
+;; (setq dap-python-debugger 'debugpy)
 #+end_src
