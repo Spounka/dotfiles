@@ -264,6 +264,16 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill; floating enable; border none
 for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enableBrGquJ5GpQxgym8DFLKrjY4xHfc2VhLY
 
+
+assign [class="org.mozilla.thunderbird"] $ws2
+
+assign [class="discord"] $ws3
+assign [class="TelegramDesktop"] $ws3
+assign [class="Ferdium"] $ws3
+
+assign [class="Brave-browser"] $ws6
+assign [class="Chromium-browser"] $ws6
+
 smart_gaps on
 gaps inner 5
 
