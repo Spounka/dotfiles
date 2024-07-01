@@ -20,7 +20,7 @@
   - [[#python-venv-auto-activate][Python Venv auto activate]]
   - [[#company-mode][Company mode]]
   - [[#codeium][Codeium]]
-- [[#debuggin][Debuggin]]
+- [[#debugging][Debugging]]
   - [[#dap-ui][DAP-UI]]
 
 * Peronal Meta data
@@ -274,7 +274,7 @@
         ))
 
 #+end_src
-* Debuggin
+* Debugging
 ** DAP-UI
 #+begin_src emacs-lisp
 ;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
