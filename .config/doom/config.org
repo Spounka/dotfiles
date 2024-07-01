@@ -10,6 +10,7 @@
   - [[#theme][Theme]]
   - [[#vertico][Vertico]]
   - [[#tabs][Tabs]]
+  - [[#neo-tree][Neo-tree]]
 - [[#keymaps][Keymaps]]
   - [[#dired][Dired]]
 - [[#plugins][Plugins]]
@@ -136,6 +137,13 @@
 #+begin_src emacs-lisp
 
 (setq-default tab-width 4)
+
+#+end_src
+
+** Neo-tree
+#+begin_src elisp
+
+(setq neo-theme (if (display-graphic-p) 'arrow))
 
 #+end_src
 
