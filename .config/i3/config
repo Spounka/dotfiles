@@ -38,6 +38,7 @@ exec --no-startup-id ~/.screenlayout/two-screens.sh
 exec --no-startup-id copyq
 exec --no-startup-id protonvpn-app
 exec --no-startup-id emacs --daemon
+exec --no-startup-id flatpak run com.tomjwatson.Emote
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -59,7 +60,6 @@ bindsym $mod+shift+d exec --no-startup-id emcl
 bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
-bindsym $mod+slash exec --no-startup-id emoji-picker
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
