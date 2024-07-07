@@ -50,3 +50,6 @@
 ;; (unpin! t)
 
 (package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
+;; (package! pyenv :recipe (:host github :repo "pythonic-emacs/pyenv-mode"))
+(package! dap-mode :recipe (:host github :repo "emacs-lsp/dap-mode"))
+(package! calibre-layer :recipe (:host github :repo "dalanicolai/calibre-layer"))
