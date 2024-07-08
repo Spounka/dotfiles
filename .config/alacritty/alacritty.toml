@@ -7,7 +7,7 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 17
+size = 13
 
 [font.bold]
 family = "Inconsolata-dz for Powerline"
