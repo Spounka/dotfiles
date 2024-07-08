@@ -12,13 +12,13 @@
 set $mod Mod4
 set $alt Mod1
 set $terminal alacritty
-set $browser chromium-browser
+set $browser chromium
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Inconsolata Nerd Font 13
 
-exec --no-startup-id dex-autostart --autostart --environment i3
+exec --no-startup-id dex --autostart --environment i3
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -36,7 +36,7 @@ exec --no-startup-id playerctld daemon
 
 exec --no-startup-id ~/.screenlayout/two-screens.sh
 exec --no-startup-id copyq
-exec --no-startup-id protonvpn-app
+exec --no-startup-id protonvpn
 exec --no-startup-id emacs --daemon
 exec --no-startup-id flatpak run com.tomjwatson.Emote
 
@@ -262,17 +262,17 @@ for_window [title="win7"] floating enable; border none
 for_window [class="(?i)*nextcloud*"] floating disable
 #for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill; floating enable; border none
-for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enableBrGquJ5GpQxgym8DFLKrjY4xHfc2VhLY
+for_window [class="Protonvpn" instance="protonvpn"] floating enableBrGquJ5GpQxgym8DFLKrjY4xHfc2VhLY
 
 
-assign [class="org.mozilla.thunderbird"] $ws2
+assign [instance="thunderbird"] $ws2
 
 assign [class="discord"] $ws3
 assign [class="TelegramDesktop"] $ws3
 assign [class="Ferdium"] $ws3
 
 assign [class="Brave-browser"] $ws6
-assign [class="Chromium-browser"] $ws6
+assign [class="Chromium"] $ws6
 
 smart_gaps on
 gaps inner 5
