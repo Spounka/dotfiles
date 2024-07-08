@@ -18,6 +18,7 @@ set $browser chromium
 # is used in the bar {} block below.
 font pango:Inconsolata Nerd Font 13
 
+default_border pixel 1
 exec --no-startup-id dex --autostart --environment i3
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -265,7 +266,7 @@ for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] k
 for_window [class="Protonvpn" instance="protonvpn"] floating enableBrGquJ5GpQxgym8DFLKrjY4xHfc2VhLY
 
 
-assign [instance="thunderbird"] $ws2
+assign [instance="thunderbird" class="Mail"] $ws2
 
 assign [class="discord"] $ws3
 assign [class="TelegramDesktop"] $ws3
@@ -275,7 +276,7 @@ assign [class="Brave-browser"] $ws6
 assign [class="Chromium"] $ws6
 
 smart_gaps on
-gaps inner 5
+gaps inner 10
 
 bindsym $mod+r mode "resize"
 
