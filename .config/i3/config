@@ -301,13 +301,13 @@ bar {
   position top
   status_command i3status
   # status_command i3blocks
-  i3bar_command i3bar
+  i3bar_command i3bar --transparency
   font pango:Inconsalata Nerd Font 14
 
   colors {
-    background #000000
-    statusline #FFFFFF
-    separator  #666666
+    background #00000000
+    statusline #FFFFFFFF
+    separator  #66666688
 
     focused_workspace  #83CAFA #51A2DA #FFFFFF
     active_workspace   #3C6EB4 #294172 #FFFFFF
