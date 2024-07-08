@@ -1,7 +1,7 @@
 return {
-  {
-    'SirVer/ultisnips',
-  },
+  -- {
+  --   'SirVer/ultisnips',
+  -- },
   {
     'mlaursen/vim-react-snippets'
   },
