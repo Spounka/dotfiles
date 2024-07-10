@@ -18,9 +18,9 @@ git clone git@github.com:Spounka/dotfiles.git $HOME/dotfiles
 
 
 ## Installation
-- ***Ensure gnu stow is installed with*** `sudo dnf install stow`
+- ***Ensure gnu stow is installed with*** `sudo pacman -S stow`
 
 ```bash
 cd dotfiles
-stow .
+stow --dotfiles --adopt .
 ```
