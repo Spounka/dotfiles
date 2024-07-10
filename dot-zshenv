@@ -25,3 +25,6 @@ eval "$(pyenv init -)"
 # the following to ~/.bashrc:
 
 eval "$(pyenv virtualenv-init -)"
+
+export QT_STYLE_OVERRIDE=kvantum
+export GTK_THEME=Materia:dark
