@@ -284,7 +284,7 @@ bindsym $mod+Ctrl+Shift+greater move workspace to output right
 bindsym $mod+Ctrl+Shift+less move workspace to output left
 
 bindsym $mod+Shift+p [instance="keepassxc"] scratchpad show, move position center
-#for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
+for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
 
 # class                 border  bground text    indicator child_border
 client.focused          #83CAFA #51A2DA #FFFFFF #83CAFA   #51A2DA
