@@ -264,6 +264,7 @@ for_window [class="(?i)*nextcloud*"] floating disable
 #for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill; floating enable; border none
 for_window [class="Protonvpn" instance="protonvpn"] floating enableBrGquJ5GpQxgym8DFLKrjY4xHfc2VhLY
+for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 400 500;
 
 
 assign [instance="thunderbird" class="Mail"] $ws2
