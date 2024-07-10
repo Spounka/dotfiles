@@ -227,7 +227,7 @@ mode "resize" {
 # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)
   
 exec --no-startup-id wmctrl -c Plasma
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [title="Desktop — Plasma"] kill;
 
 # Compositor (Animations, Shadows, Transparency)
 # >>> Window rules <<<
@@ -236,14 +236,14 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [class="yakuake"] floating enable;
 for_window [class="lattedock"] floating enable;
 for_window [class="plasmashell"] floating enable;
-for_window [class="Kmix"] floating enable; border none
-for_window [class="kruler"] floating enable; border none
-for_window [class="Plasma"] floating enable; border none
-for_window [class="Klipper"] floating enable; border none
-for_window [class="krunner"] floating enable; border none
-for_window [class="Plasmoidviewer"] floating enable; border none
-for_window [title="plasma-desktop"] floating enable; border none
-for_window [class="Emoji-picker"] floating enable; border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="kruler"] floating enable, border none
+for_window [class="Plasma"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [class="Emoji-picker"] floating enable, border none
 #for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position 1450px 20px
 #no_focus [class="plasmashell" window_type="notification"] 
 focus_on_window_activation none
@@ -259,11 +259,11 @@ for_window [window_type="menu"] floating enable
 for_window [instance="__scratchpad"] floating enable
 
 for_window [class="systemsettings"] floating enable
-for_window [title="win7"] floating enable; border none
+for_window [title="win7"] floating enable, border none
 for_window [class="(?i)*nextcloud*"] floating disable
 #for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
-for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill; floating enable; border none
-for_window [class="Protonvpn" instance="protonvpn"] floating enableBrGquJ5GpQxgym8DFLKrjY4xHfc2VhLY
+for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill;
+for_window [class="Protonvpn" instance="protonvpn"] floating enable;
 for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 400 500;
 
 for_window [floating] border none;
@@ -287,7 +287,7 @@ bindsym $mod+Ctrl+Shift+greater move workspace to output right
 bindsym $mod+Ctrl+Shift+less move workspace to output left
 
 bindsym $mod+Shift+p [instance="keepassxc"] scratchpad show, move position center
-for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
+for_window [instance="keepassxc" window_type="normal"] floating enable, resize set 800 800, move scratchpad;
 
 # class                 border  bground text    indicator child_border
 client.focused          #83CAFA #51A2DA #FFFFFF #83CAFA   #51A2DA
