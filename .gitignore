@@ -2,3 +2,4 @@
 config.el
 custom.el
 lazy-lock.json
+__pycache__
