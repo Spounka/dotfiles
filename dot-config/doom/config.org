@@ -14,6 +14,7 @@
 - [[#keymaps][Keymaps]]
   - [[#dired][Dired]]
   - [[#pyenv][Pyenv]]
+  - [[#flycheck-errors][Flycheck Errors]]
 - [[#plugins][Plugins]]
   - [[#org-mode][Org mode]]
   - [[#tree-sitter][Tree-sitter]]
@@ -166,6 +167,15 @@
 (after! python
   (map! :map pyenv-mode-map
         :leader "m r" #'pyenv-mode-read-version))
+
+#+end_src
+** Flycheck Errors
+
+#+begin_src elisp
+
+(map! :map flycheck-mode-map
+        :leader "e [" #'flycheck-previous-error
+        :leader "e ]" #'flycheck-next-error)
 
 #+end_src
 
