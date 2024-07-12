@@ -61,6 +61,7 @@ bindsym $mod+shift+d exec --no-startup-id emcl
 bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
+bindsym $mod+shift+g emacsclient eval "(emacs-everywhere)"
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -154,11 +155,11 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace $ws1  output eDP
-workspace $ws2  output eDP
-workspace $ws3  output eDP
-workspace $ws4  output eDP
-workspace $ws5  output eDP
+workspace $ws1  output eDP-1
+workspace $ws2  output eDP-1
+workspace $ws3  output eDP-1
+workspace $ws4  output eDP-1
+workspace $ws5  output eDP-1
 workspace $ws6  output HDMI-1-0
 workspace $ws7  output HDMI-1-0
 workspace $ws8  output HDMI-1-0
@@ -301,7 +302,7 @@ client.background       #FFFFFF
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  tray_output eDP
+  tray_output eDP-1
   position top
   status_command i3status
   # status_command i3blocks
