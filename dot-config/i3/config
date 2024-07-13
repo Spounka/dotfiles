@@ -61,7 +61,7 @@ bindsym $mod+shift+d exec --no-startup-id emcl
 bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
-bindsym $mod+shift+g emacsclient eval "(emacs-everywhere)"
+bindsym $mod+shift+g exec --no-startup-id doom +everywhere
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -268,6 +268,7 @@ for_window [class="Protonvpn" instance="protonvpn"] floating enable;
 for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 400 500;
 
 for_window [floating] border none;
+for_window [instance="emacs-everywhere"] floating enable, resize set 800 600;
 
 
 assign [instance="thunderbird" class="Mail"] $ws2
