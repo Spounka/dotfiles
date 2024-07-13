@@ -164,6 +164,18 @@
 (setq neo-theme (if (display-graphic-p) 'arrow))
 
 #+end_src
+** Cross Lines
+#+begin_src emacs-lisp
+
+(map! :map evil-normal-state-map "<remap> <evil-next-line>"             #'evil-next-visual-line)
+(map! :map evil-normal-state-map "<remap> <evil-previous-line>"         #'evil-previous-visual-line)
+(map! :map evil-motion-state-map "<remap> <evil-next-line>"             #'evil-next-visual-line)
+(map! :map evil-motion-state-map "<remap> <evil-previous-line>"         #'evil-previous-visual-line)
+
+; Make horizontal movement cross lines
+(setq-default evil-cross-lines t)
+
+#+end_src
 
 * Keymaps
 ** Dired
