@@ -22,6 +22,7 @@
   - [[#pyenv][Pyenv]]
   - [[#company-mode][Company mode]]
   - [[#codeium][Codeium]]
+  - [[#lsp-ui][LSP UI]]
 - [[#debugging][Debugging]]
   - [[#dap][DAP]]
   - [[#dap-ui-1][DAP-UI]]
@@ -390,6 +391,12 @@
 ;;         ;; also get a drop down
 ;;         company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
 ;;         ))
+
+#+end_src
+** LSP UI
+#+begin_src elisp
+
+(add-hook 'lsp-mode! #'lsp-ui-sideline-toggle-symbols-info)
 
 #+end_src
 * Debugging
