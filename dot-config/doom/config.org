@@ -16,6 +16,7 @@
   - [[#dired][Dired]]
   - [[#flycheck-errors][Flycheck Errors]]
   - [[#dap-ui][DAP UI]]
+  - [[#kill-buffer-and-window][Kill buffer and window]]
 - [[#plugins][Plugins]]
   - [[#org-mode][Org mode]]
   - [[#python-venv-auto-activate][Python Venv auto activate]]
@@ -227,6 +228,12 @@
       :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+#+end_src
+** Kill buffer and window
+#+begin_src emacs-lisp
+
+(map! :leader :desc "Kill buffer and window" "b k" #'kill-buffer-and-window)
 
 #+end_src
 * Plugins
