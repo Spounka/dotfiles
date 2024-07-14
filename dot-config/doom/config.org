@@ -297,6 +297,7 @@
 (setq exec-path (append exec-path '("~/.pyenv/bin")))
 
 (after! python
+  (pyenv-mode 1)
   (map! :map pyenv-mode-map
         :leader "m r" #'pyenv-mode-read-version))
 
