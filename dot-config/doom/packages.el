@@ -49,7 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
-(package! pyenv-mode)
+(package! codeium :recipe (:host github :repo "Exafunction/codeium.el") :disable t)
 (package! dap-mode :recipe (:host github :repo "emacs-lsp/dap-mode"))
 (package! calibre-layer :recipe (:host github :repo "dalanicolai/calibre-layer"))
+(package! vertico-posframe)
+(package! pyenv-mode)
