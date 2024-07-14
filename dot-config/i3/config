@@ -269,6 +269,7 @@ for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 40
 
 for_window [floating] border none;
 for_window [instance="emacs-everywhere"] floating enable, resize set 800 600;
+for_window [class="install4j-RV" title="win0"] floating enable;
 
 
 assign [instance="thunderbird" class="Mail"] $ws2
