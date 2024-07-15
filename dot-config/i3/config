@@ -309,7 +309,7 @@ bar {
   status_command i3status
   # status_command i3blocks
   i3bar_command i3bar --transparency
-  font pango:Inconsalata Nerd Font 14
+  font pango:Inconsolata Nerd Font 14
 
   colors {
     background #00000000
