@@ -17,6 +17,9 @@
   - [[#flycheck-errors][Flycheck Errors]]
   - [[#dap-ui][DAP UI]]
   - [[#kill-buffer-and-window][Kill buffer and window]]
+  - [[#run-terminal-in-project-root][Run terminal in project root]]
+  - [[#pytest][Pytest]]
+  - [[#kill-word][Kill word]]
 - [[#plugins][Plugins]]
   - [[#org-mode][Org mode]]
   - [[#python-venv-auto-activate][Python Venv auto activate]]
@@ -145,12 +148,14 @@
 
 #+begin_src elisp
 
-(require 'vertico-posframe)
-(vertico-posframe-mode 1)
+(after! vertico-posframe
+  :config
 
-(setq vertico-posframe-parameters
-     '((left-fringe . 8)
-       (right-fringe . 8)))
+        (vertico-posframe-mode t)
+
+        (setq vertico-posframe-parameters '((left-fringe . 8) (right-fringe . 8)))
+)
+
 #+end_src
 ** Tabs
 #+begin_src emacs-lisp
@@ -163,6 +168,7 @@
 #+begin_src elisp
 
 (setq neo-theme (if (display-graphic-p) 'arrow))
+(map! :map neotree-mode-map :desc "Refresh neotree" :leader "r r" #'neotree-refresh)
 
 #+end_src
 ** Cross Lines
@@ -191,8 +197,8 @@
 #+begin_src elisp
 
 (map! :map flycheck-mode-map
-        :leader "e [" #'flycheck-previous-error
-        :leader "e ]" #'flycheck-next-error)
+      :leader "e [" #'flycheck-previous-error
+      :leader "e ]" #'flycheck-next-error)
 
 #+end_src
 ** DAP UI
@@ -234,6 +240,34 @@
 #+begin_src emacs-lisp
 
 (map! :leader :desc "Kill buffer and window" "b k" #'kill-buffer-and-window)
+
+#+end_src
+** Run terminal in project root
+
+#+begin_src elisp
+
+(setq terminal "alacritty")
+(defun nb/open-terminal-in-project-root ()
+  "Open Terminal terminal in the project root."
+  (interactive)
+  (let ((project-root (projectile-project-root)))
+    (if project-root
+        (start-process "Terminal" nil terminal "--working-directory" project-root)
+      (message "You are not in a Projectile project"))))
+
+#+end_src
+
+** Pytest
+#+begin_src emacs-lisp
+
+(setq nose nil)
+(map! :desc "Pytest run all" "<remap nosetests-all>" #'python-pytest)
+
+#+end_src
+** Kill word
+#+begin_src emacs-lisp
+
+(map! "<remap> <backward-kill-word>" #'evil-delete-backward-word)
 
 #+end_src
 * Plugins
@@ -278,7 +312,8 @@
 ** Python Venv auto activate
 #+begin_src elisp
 
-(use-package pyvenv
+(add-hook! python-mode (pyvenv-activate (contact projectile-project-root ".venv")))
+(after! pyvenv
   :config
   (pyvenv-mode t)
 
@@ -290,6 +325,8 @@
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
 
+
+
 #+end_src
 ** Pyenv
 #+begin_src elisp
@@ -298,7 +335,7 @@
 
 (after! python
   (pyenv-mode 1)
-  (map! :map pyenv-mode-map
+  (map! :map python-mode-map
         :leader "m r" #'pyenv-mode-read-version))
 
 
@@ -320,65 +357,65 @@
 
 ;; we recommend using use-package to organize your init.el
 (use-package codeium
-    ;; if you use straight
-    ;; :straight '(:type git :host github :repo "Exafunction/codeium.el")
-    ;; otherwise, make sure that the codeium.el file is on load-path
+  ;; if you use straight
+  ;; :straight '(:type git :host github :repo "Exafunction/codeium.el")
+  ;; otherwise, make sure that the codeium.el file is on load-path
 
-    :init
-    ;; use globally
-    (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
-    ;; or on a hook
-    ;; (add-hook 'python-mode-hook
-    ;;     (lambda ()
-    ;;         (setq-local completion-at-point-functions '(codeium-completion-at-point))))
+  :init
+  ;; use globally
+  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
+  ;; or on a hook
+  ;; (add-hook 'python-mode-hook
+  ;;     (lambda ()
+  ;;         (setq-local completion-at-point-functions '(codeium-completion-at-point))))
 
-    ;; if you want multiple completion backends, use cape (https://github.com/minad/cape):
-    ;; (add-hook 'python-mode-hook
-    ;;     (lambda ()
-    ;;         (setq-local completion-at-point-functions
-    ;;             (list (cape-super-capf #'codeium-completion-at-point #'lsp-completion-at-point)))))
-    ;; an async company-backend is coming soon!
+  ;; if you want multiple completion backends, use cape (https://github.com/minad/cape):
+  ;; (add-hook 'python-mode-hook
+  ;;     (lambda ()
+  ;;         (setq-local completion-at-point-functions
+  ;;             (list (cape-super-capf #'codeium-completion-at-point #'lsp-completion-at-point)))))
+  ;; an async company-backend is coming soon!
 
-    ;; codeium-completion-at-point is autoloaded, but you can
-    ;; optionally set a timer, which might speed up things as the
-    ;; codeium local language server takes ~0.2s to start up
-    (add-hook 'emacs-startup-hook
-     (lambda () (run-with-timer 0.2 nil #'codeium-init)))
+  ;; codeium-completion-at-point is autoloaded, but you can
+  ;; optionally set a timer, which might speed up things as the
+  ;; codeium local language server takes ~0.2s to start up
+  (add-hook 'emacs-startup-hook
+            (lambda () (run-with-timer 0.2 nil #'codeium-init)))
 
-    :defer t ;; lazy loading, if you want
-    :config
-    ;; (setq use-dialog-box nil) ;; do not use popup boxes
+  :defer t ;; lazy loading, if you want
+  :config
+  ;; (setq use-dialog-box nil) ;; do not use popup boxes
 
-    ;; if you don't want to use customize to save the api-key
-    ;; (setq codeium/metadata/api_key "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+  ;; if you don't want to use customize to save the api-key
+  ;; (setq codeium/metadata/api_key "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
 
-    ;; get codeium status in the modeline
-    (setq codeium-mode-line-enable
+  ;; get codeium status in the modeline
+  (setq codeium-mode-line-enable
         (lambda (api) (not (memq api '(CancelRequest Heartbeat AcceptCompletion)))))
-    (add-to-list 'mode-line-format '(:eval (car-safe codeium-mode-line)) t)
-    ;; alternatively for a more extensive mode-line
-    ;; (add-to-list 'mode-line-format '(-50 "" codeium-mode-line) t)
+  (add-to-list 'mode-line-format '(:eval (car-safe codeium-mode-line)) t)
+  ;; alternatively for a more extensive mode-line
+  ;; (add-to-list 'mode-line-format '(-50 "" codeium-mode-line) t)
 
-    ;; use M-x codeium-diagnose to see apis/fields that would be sent to the local language server
-    (setq codeium-api-enabled
+  ;; use M-x codeium-diagnose to see apis/fields that would be sent to the local language server
+  (setq codeium-api-enabled
         (lambda (api)
-            (memq api '(GetCompletions Heartbeat CancelRequest GetAuthToken RegisterUser auth-redirect AcceptCompletion))))
-    ;; you can also set a config for a single buffer like this:
-    ;; (add-hook 'python-mode-hook
-    ;;     (lambda ()
-    ;;         (setq-local codeium/editor_options/tab_size 4)))
+          (memq api '(GetCompletions Heartbeat CancelRequest GetAuthToken RegisterUser auth-redirect AcceptCompletion))))
+  ;; you can also set a config for a single buffer like this:
+  ;; (add-hook 'python-mode-hook
+  ;;     (lambda ()
+  ;;         (setq-local codeium/editor_options/tab_size 4)))
 
-    ;; You can overwrite all the codeium configs!
-    ;; for example, we recommend limiting the string sent to codeium for better performance
-    (defun my-codeium/document/text ()
-        (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (min (+ (point) 1000) (point-max))))
-    ;; if you change the text, you should also change the cursor_offset
-    ;; warning: this is measured by UTF-8 encoded bytes
-    (defun my-codeium/document/cursor_offset ()
-        (codeium-utf8-byte-length
-            (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (point))))
-    (setq codeium/document/text 'my-codeium/document/text)
-    (setq codeium/document/cursor_offset 'my-codeium/document/cursor_offset))
+  ;; You can overwrite all the codeium configs!
+  ;; for example, we recommend limiting the string sent to codeium for better performance
+  (defun my-codeium/document/text ()
+    (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (min (+ (point) 1000) (point-max))))
+  ;; if you change the text, you should also change the cursor_offset
+  ;; warning: this is measured by UTF-8 encoded bytes
+  (defun my-codeium/document/cursor_offset ()
+    (codeium-utf8-byte-length
+     (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (point))))
+  (setq codeium/document/text 'my-codeium/document/text)
+  (setq codeium/document/cursor_offset 'my-codeium/document/cursor_offset))
 
 
 #+end_src
@@ -386,19 +423,19 @@
 #+begin_src elisp
 
 (use-package company
-    :defer 0.2
-    :config
-    (global-company-mode t)
-    (setq-default
-        company-idle-delay 0.02
-        company-require-match nil
-        company-minimum-prefix-length 0
+  :defer 0.2
+  :config
+  (global-company-mode t)
+  (setq-default
+   company-idle-delay 0.02
+   company-require-match nil
+   company-minimum-prefix-length 0
 
-        ;; get only preview
-        company-frontends '(company-preview-frontend)
-        ;; also get a drop down
-        company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
-        ))
+   ;; get only preview
+   company-frontends '(company-preview-frontend)
+   ;; also get a drop down
+   company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
+   ))
 
 #+end_src
 ** LSP UI
@@ -436,25 +473,25 @@
 #+end_src
 *** Python
 #+begin_src emacs-lisp
-(require 'dap-python)
-;; if you installed debugpy, you need to set this
-;; https://github.com/emacs-lsp/dap-mode/issues/306
-(setq dap-python-debugger 'debugpy)
+(after! dap-python
+  :config
+        ;; if you installed debugpy, you need to set this
+        ;; https://github.com/emacs-lsp/dap-mode/issues/306
+        (setq dap-python-debugger 'debugpy)
 
-(dap-register-debug-template "Customizable Config"
-  (list :type "python"
-        :args "-i"
-        :debugger "debugpy"
-        :env '(("DEBUG" . "1"))
-        :request "launch"
-        :name "Python :: Customizable Configuration"))
+        (dap-register-debug-template "Customizable Config"
+                                (list :type "python"
+                                        :args "-i"
+                                        :debugger "debugpy"
+                                        :env '(("DEBUG" . "1"))
+                                        :request "launch"
+                                        :name "Python :: Customizable Configuration"))
 
-(dap-register-debug-template "Python :: Attach to running process"
-  (list :type "python"
-        :request "attach"
-        :processId "${command:pickProcess}"
-        :name "Python :: Attach to running process"))
-
+        (dap-register-debug-template "Python :: Attach to running process"
+                                (list :type "python"
+                                        :request "attach"
+                                        :processId "${command:pickProcess}"
+                                        :name "Python :: Attach to running process")))
 #+end_src
 * Calibre
 #+begin_src elisp
