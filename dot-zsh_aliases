@@ -32,3 +32,6 @@ alias nmsp="~/.scripts/wifi.sh Spounka"
 alias nmaz="~/.scripts/wifi.sh D-AZZEDINE"
 alias armorpaints="armorpaint"
 
+# Wine Stuff
+alias w32="WINEARCH=win32 WINEDEBUG=-all WINEPREFIX=~/.local/share/wineprefixes/wine/ wine"
+alias w64="WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=~/.local/share/wineprefixes/wine64/ wine"
