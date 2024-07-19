@@ -71,22 +71,22 @@
 ;;       doom-variable-pitch-font  (font-spec :family "SauceCodePro Nerd Font" :size 20)
 ;;       doom-serif-font           (font-spec :family "Liberation Serif" :size 17))
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 17)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 23)
-      doom-variable-pitch-font (font-spec :family "Roboto" :size 20)
-      doom-serif-font (font-spec :family "DejaVu Serif" :size 17)
-      doom-symbol-font (font-spec :family "Symbols Nerd Font Mono" :size 17))
-
-;; (setq doom-font (font-spec :family "Hack Nerd Font" :size 17)
-;;       doom-big-font (font-spec :family "Hack Nerd Font" :size 23)
-;;       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 20)
-;;       doom-serif-font (font-spec :family "Liberation Serif" :size 17)
+;; (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 17)
+;;       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 23)
+;;       doom-variable-pitch-font (font-spec :family "Roboto" :size 20)
+;;       doom-serif-font (font-spec :family "DejaVu Serif" :size 17)
 ;;       doom-symbol-font (font-spec :family "Symbols Nerd Font Mono" :size 17))
+
+(setq doom-font (font-spec :family "Hack Nerd Font" :size 17)
+      doom-big-font (font-spec :family "Hack Nerd Font" :size 23)
+      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 20)
+      doom-serif-font (font-spec :family "Liberation Serif" :size 17)
+      doom-symbol-font (font-spec :family "Symbols Nerd Font Mono" :size 17))
 
 
 (after! doom-themes
-        (setq   doom-themes-enable-bold t
-                doom-themes-enable-italic t))
+  (setq   doom-themes-enable-bold t
+          doom-themes-enable-italic t))
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
