@@ -6,15 +6,6 @@ if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )); then
 #    exec startx
 fi
 
-setfont /usr/share/fonts/ter-powerline-v24b.psf.gz
-setleds -D +num
-
-export ANDROID_HOME="/home/spounka/Android"
-# Restart your shell for the changes to take effect.
-
-
-# set a new bash variable to 0
-
 editor=/usr/bin/nvim
 
 export EDITOR=$editor
@@ -25,4 +16,10 @@ export SYSTEMD_EDITOR=$editor
 # Added by Toolbox App
 export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
 
+
+autoload -Uz compinit
+compinit
+
+#Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
+source <(ng completion script)
 
