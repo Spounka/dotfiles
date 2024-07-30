@@ -28,3 +28,11 @@ eval "$(pyenv virtualenv-init -)"
 
 export QT_STYLE_OVERRIDE=kvantum
 export GTK_THEME=Materia:dark
+
+
+autoload -Uz compinit
+compinit
+
+#Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
+source <(ng completion script)
+source /usr/share/nvm/init-nvm.sh

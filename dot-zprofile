@@ -15,12 +15,3 @@ export SYSTEMD_EDITOR=$editor
 
 # Added by Toolbox App
 export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
-
-
-autoload -Uz compinit
-compinit
-
-#Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
-source <(ng completion script)
-source /usr/share/nvm/init-nvm.sh
-
