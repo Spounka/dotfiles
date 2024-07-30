@@ -272,6 +272,7 @@ for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 40
 for_window [floating] border none;
 for_window [instance="emacs-everywhere"] floating enable, resize set 800 600;
 for_window [class="install4j-RV" title="win0"] floating enable;
+for_window [class="Xfce4-panel" instance="xfce4-panel"] floating enable;
 
 
 assign [instance="thunderbird" class="Mail"] $ws2
@@ -305,23 +306,23 @@ client.background       #FFFFFF
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#   tray_output eDP-1
-#   position top
-#   status_command i3status
-#   # status_command i3blocks
-#   i3bar_command i3bar --transparency
-#   font pango:Inconsolata Nerd Font 14
-#
-#   colors {
-#     background #00000000
-#     statusline #FFFFFFFF
-#     separator  #66666688
-#
-#     focused_workspace  #83CAFA #51A2DA #FFFFFF
-#     active_workspace   #3C6EB4 #294172 #FFFFFF
-#     inactive_workspace #8C8C8C #4C4C4C #888888
-#     urgent_workspace   #EC69A0 #DB3279 #FFFFFF
-#     binding_mode       #b691d3 #A07CBC #FFFFFF
-#   }
-# }
+bar {
+  tray_output eDP-1
+  position top
+  status_command i3status
+  # status_command i3blocks
+  i3bar_command i3bar
+  font pango:Inconsolata Nerd Font 14
+
+  colors {
+    background #222222FF
+    statusline #FFFFFFFF
+    separator  #66666688
+
+    focused_workspace  #83CAFA #51A2DA #FFFFFF
+    active_workspace   #3C6EB4 #294172 #FFFFFF
+    inactive_workspace #8C8C8C #4C4C4C #888888
+    urgent_workspace   #EC69A0 #DB3279 #FFFFFF
+    binding_mode       #b691d3 #A07CBC #FFFFFF
+  }
+}
