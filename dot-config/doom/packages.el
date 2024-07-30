@@ -59,4 +59,5 @@
 (package! pyenv-mode)
 (package! evil-surround)
 (package! i3wm-config-mode)
+(package! pyvenv)
 (package! nvm)

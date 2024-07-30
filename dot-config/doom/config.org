@@ -30,6 +30,7 @@
   - [[#company][Company]]
   - [[#lsp-tailwind][LSP Tailwind]]
   - [[#lsp-ui][LSP UI]]
+  - [[#global-tree-sitter][Global Tree-sitter]]
 - [[#debugging][Debugging]]
   - [[#dap][DAP]]
   - [[#dap-ui-1][DAP-UI]]
@@ -317,10 +318,9 @@
 ** Python Venv auto activate
 #+begin_src elisp
 
-(add-hook! python-mode (pyvenv-activate (contact projectile-project-root ".venv")))
-(after! pyvenv
+(after! python
   :config
-  (pyvenv-mode t)
+  (setq pyvenv-mode t)
 
   ;; Set correct Python interpreter
   (setq pyvenv-post-activate-hooks
@@ -329,6 +329,8 @@
   (setq pyvenv-post-deactivate-hooks
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
+
+(add-hook! 'python-mode-hook :config (pyvenv-activate (concat projectile-project-root ".venv")))
 
 
 
@@ -339,12 +341,9 @@
 (setq exec-path (append exec-path '("~/.pyenv/bin")))
 
 (after! python
-  (pyenv-mode 1)
-  (map! :map python-mode-map
-        :leader "m r" #'pyenv-mode-read-version))
+  :config
+  (setq pyenv-mode 1))
 
-
-(require 'pyenv-mode)
 
 (defun projectile-pyenv-mode-set ()
   "Set pyenv version matching project name."
@@ -469,6 +468,10 @@
         lsp-ui-doc-max-width 94
         lsp-ui-doc-max-height 40))
 
+#+end_src
+** Global Tree-sitter
+#+begin_src elisp
+(add-hook! 'prog-mode-hook :config (setq tree-sitter-hl-mode t))
 #+end_src
 * Debugging
 ** DAP
