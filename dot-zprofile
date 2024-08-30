@@ -15,3 +15,4 @@ export SYSTEMD_EDITOR=$editor
 
 # Added by Toolbox App
 export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
+source "/usr/lib/emsdk/emsdk_env.sh"
