@@ -22,6 +22,8 @@
   - [[#run-terminal-in-project-root][Run terminal in project root]]
   - [[#pytest][Pytest]]
   - [[#kill-word][Kill word]]
+  - [[#lsp-c][LSP C++]]
+  - [[#tree-sitter-hl-mode][Tree Sitter hl mode]]
 - [[#plugins][Plugins]]
   - [[#org-mode][Org mode]]
   - [[#python-venv-auto-activate][Python Venv auto activate]]
@@ -30,6 +32,7 @@
   - [[#company][Company]]
   - [[#lsp-tailwind][LSP Tailwind]]
   - [[#lsp-ui][LSP UI]]
+  - [[#auto-lsp][Auto LSP]]
   - [[#global-tree-sitter][Global Tree-sitter]]
 - [[#debugging][Debugging]]
   - [[#dap][DAP]]
@@ -276,6 +279,21 @@
 (map! "<remap> <backward-kill-word>" #'evil-delete-backward-word)
 
 #+end_src
+** LSP C++
+#+begin_src emacs-lisp
+(map! :map lsp-mode-map :desc "Refresh neotree" :leader "c h" #'lsp-clangd-find-other-file)
+#+end_src
+** Tree Sitter hl mode
+#+begin_src emacs-lisp
+(defun nb/toggle-tree-sitter-hl ()
+        "Toggle tree-sitter-hl-mode."
+        (interactive)
+        (if tree-sitter-hl-mode
+            (tree-sitter-hl-mode 0)
+          (tree-sitter-hl-mode t))
+)
+(map! :map lsp-mode-map :desc "Toggle tree sitter hl mode" :leader "t h" #'nb/toggle-tree-sitter-hl)
+#+end_src
 * Plugins
 ** Org mode
 *** CSS
@@ -452,7 +470,7 @@
 ** LSP UI
 #+begin_src elisp
 
-(add-hook 'lsp-mode! #'lsp-ui-sideline-toggle-symbols-info)
+(add-hook! 'lsp-mode-hook (lsp-ui-sideline-toggle-symbols-info))
 (map! :after lsp-mode
       :map lsp-mode-map
       :desc "LSP Documentation glance" "<remap> <evil-lookup>" #'lsp-ui-doc-glance
@@ -469,9 +487,13 @@
         lsp-ui-doc-max-height 40))
 
 #+end_src
+** Auto LSP
+#+begin_src emacs-lisp
+(add-hook! 'prog-mode-hook (lsp) (setq lsp-mode t))
+#+end_src
 ** Global Tree-sitter
 #+begin_src elisp
-(add-hook! 'prog-mode-hook :config (setq tree-sitter-hl-mode t))
+(add-hook! 'prog-mode-hook (setq tree-sitter-hl-mode t))
 #+end_src
 * Debugging
 ** DAP
