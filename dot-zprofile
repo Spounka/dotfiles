@@ -11,8 +11,11 @@ editor=/usr/bin/nvim
 export EDITOR=$editor
 export VISUAL=$editor
 export SYSTEMD_EDITOR=$editor
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 
 # Added by Toolbox App
 export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
+
+export EMSDK_QUIET=1
 source "/usr/lib/emsdk/emsdk_env.sh"
