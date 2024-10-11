@@ -285,7 +285,7 @@ local servers = {
   -- gopls = {},
   pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  -- tsserver = {},
   -- codelldb = {},
 
   lua_ls = {
