@@ -38,5 +38,12 @@ return {
     config = function()
       vim.cmd.colorscheme 'tokyonight-night'
     end,
+  },
+  {
+    'tanvirtin/monokai.nvim',
+    priority = 997,
+    config = function()
+      vim.cmd.colorscheme 'monokai'
+    end,
   }
 }
