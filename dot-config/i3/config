@@ -273,6 +273,7 @@ for_window [floating] border none;
 for_window [instance="emacs-everywhere"] floating enable, resize set 800 600;
 for_window [class="install4j-RV" title="win0"] floating enable;
 for_window [class="Xfce4-panel" instance="xfce4-panel"] floating enable;
+for_window [class="Galculator" instance="galculator"] floating enable;
 
 
 assign [instance="thunderbird" class="Mail"] $ws2
