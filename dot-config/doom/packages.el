@@ -49,10 +49,10 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
 (package! dap-mode :recipe (:host github :repo "emacs-lsp/dap-mode"))
 (package! calibre-layer :recipe (:host github :repo "dalanicolai/calibre-layer"))
 (package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
+(package! treesit-auto :recipe (:host github :repo "renzmann/treesit-auto"))
 (package! calibredb)
 (package! editorconfig)
 (package! vertico-posframe)

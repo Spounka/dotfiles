@@ -34,9 +34,11 @@
   - [[#lsp-ui][LSP UI]]
   - [[#auto-lsp][Auto LSP]]
   - [[#global-tree-sitter][Global Tree-sitter]]
+  - [[#diff-disable][Diff Disable]]
+  - [[#treesit][Treesit]]
 - [[#debugging][Debugging]]
   - [[#dap][DAP]]
-  - [[#dap-ui-1][DAP-UI]]
+  - [[#dap-c][DAP C++]]
 - [[#calibre][Calibre]]
 
 * Peronal Meta data
@@ -99,9 +101,10 @@
 (after! doom-themes
   (setq   doom-themes-enable-bold t
           doom-themes-enable-italic t))
-(custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-keyword-face :slant italic))
+
+;; (custom-set-faces!
+;;   '(font-lock-comment-face :slant italic)
+;;   '(font-lock-keyword-face :slant italic))
 #+end_src
 
 ** Theme
@@ -282,16 +285,17 @@
 ** LSP C++
 #+begin_src emacs-lisp
 (map! :map lsp-mode-map :desc "Refresh neotree" :leader "c h" #'lsp-clangd-find-other-file)
+(require 'dap-gdb-lldb)
 #+end_src
 ** Tree Sitter hl mode
 #+begin_src emacs-lisp
 (defun nb/toggle-tree-sitter-hl ()
-        "Toggle tree-sitter-hl-mode."
-        (interactive)
-        (if tree-sitter-hl-mode
-            (tree-sitter-hl-mode 0)
-          (tree-sitter-hl-mode t))
-)
+  "Toggle tree-sitter-hl-mode."
+  (interactive)
+  (if tree-sitter-hl-mode
+      (tree-sitter-hl-mode 0)
+    (tree-sitter-hl-mode t)))
+
 (map! :map lsp-mode-map :desc "Toggle tree sitter hl mode" :leader "t h" #'nb/toggle-tree-sitter-hl)
 #+end_src
 * Plugins
@@ -495,6 +499,99 @@
 #+begin_src elisp
 (add-hook! 'prog-mode-hook (setq tree-sitter-hl-mode t))
 #+end_src
+** Diff Disable
+#+begin_src emacs-lisp
+;; (global-diff-hl-mode -1)
+;; (after! diff-hl (global-diff-hl-mode -1))
+
+;; (remove-hook 'prog-mode-hook #'diff-hl-mode)
+;; (remove-hook 'vc-dir-mode-hook #'diff-hl-dir-mode)
+#+end_src
+** Treesit
+#+begin_src emacs-lisp
+(setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+     (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "v0.22.0")
+     ))
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+(setq treesit-font-lock-level 4)
+
+(after! lsp-mode (setq lsp-enable-symbol-highlighting t))
+(use-package! treesit
+  :hook ((python-mode c-mode c++-mode) . treesit-parser-create)
+  :config
+  ;; Enable tree-sitter globally
+  (global-tree-sitter-mode)
+  ;; Enable highlight
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+(setq major-mode-remap-alist
+      '((python-mode . python-ts-mode)
+        ;; (c-mode . c-ts-mode)
+        ;; (c++-mode . c++-ts-mode)
+        ;; Add more modes here
+        ))
+(defun my/treesit-custom-highlighting ()
+  "Customize Tree-sitter's highlighting for better font-lock features."
+  (setq-local treesit-font-lock-settings
+              (append treesit-font-lock-settings
+                      '((member . 'font-lock-variable-name-face)
+                        (function . 'font-lock-function-name-face)
+                        (method . 'font-lock-function-name-face)
+                        (constant . 'font-lock-constant-face)
+                        (property . 'font-lock-variable-name-face)
+                        (type . 'font-lock-type-face)))))
+
+
+(add-hook 'c-mode-hook 'my/treesit-custom-highlighting)
+(add-hook 'cpp-mode-hook 'my/treesit-custom-highlighting)
+(add-hook 'python-ts-mode-hook 'my/treesit-custom-highlighting)
+
+(defun my/treesit-variable-highlighting ()
+  "Custom Tree-sitter-based font-lock for distinguishing local and class variables."
+  (setq-local treesit-font-lock-settings
+              (append treesit-font-lock-settings
+                      '(
+                        ;; Highlight local variables (typically as identifier nodes)
+                        ((variable_declarator) @local-variable
+                         (:override t :face font-lock-variable-name-face))
+
+                        ;; Highlight class variables (members)
+                        ((field_expression) @class-variable
+                         (:override t :face font-lock-type-face))
+
+                        ;; Optional: Highlight function parameters differently
+                        ((parameter_declaration) @parameter
+                         (:override t :face font-lock-variable-name-face))
+                        ))))
+
+;; Add the hook to relevant major modes
+(add-hook 'c-mode-hook 'my/treesit-variable-highlighting)
+(add-hook 'cpp-mode-hook 'my/treesit-variable-highlighting)
+
+
+
+
+#+end_src
 * Debugging
 ** DAP
 #+begin_src elisp
@@ -502,10 +599,6 @@
 ;; Enabling only some features
 (setq dap-auto-configure-features '(sessions locals controls tooltip))
 
-#+end_src
-** DAP-UI
-#+begin_src emacs-lisp
-;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
 #+end_src
 *** Python
 #+begin_src emacs-lisp
@@ -528,6 +621,10 @@
                                         :request "attach"
                                         :processId "${command:pickProcess}"
                                         :name "Python :: Attach to running process")))
+#+end_src
+** DAP C++
+#+begin_src emacs-lisp
+(require 'dap-gdb-lldb)
 #+end_src
 * Calibre
 #+begin_src elisp
