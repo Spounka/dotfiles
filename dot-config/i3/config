@@ -264,7 +264,7 @@ for_window [instance="__scratchpad"] floating enable
 for_window [class="systemsettings"] floating enable
 for_window [title="win7"] floating enable, border none
 for_window [class="(?i)*nextcloud*"] floating disable
-#for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
+for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill;
 for_window [class="Protonvpn" instance="protonvpn"] floating enable;
 for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 400 500;
