@@ -276,7 +276,7 @@ for_window [class="Xfce4-panel" instance="xfce4-panel"] floating enable;
 for_window [class="Galculator" instance="galculator"] floating enable;
 
 
-assign [instance="thunderbird" class="Mail"] $ws2
+assign [class="thunderbird"] $ws2
 
 assign [class="discord"] $ws3
 assign [class="TelegramDesktop"] $ws3
