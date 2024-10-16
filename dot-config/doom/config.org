@@ -538,7 +538,9 @@
 
 (after! lsp-mode (setq lsp-enable-symbol-highlighting t))
 (use-package! treesit
-  :hook ((python-mode c-mode c++-mode) . treesit-parser-create)
+:hook ((python-mode . (lambda () (treesit-parser-create 'python)))
+       (c-mode . (lambda () (treesit-parser-create 'c)))
+       (c++-mode . (lambda () (treesit-parser-create 'cpp))))
   :config
   ;; Enable tree-sitter globally
   (global-tree-sitter-mode)
@@ -546,8 +548,8 @@
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 (setq major-mode-remap-alist
       '((python-mode . python-ts-mode)
-        ;; (c-mode . c-ts-mode)
-        ;; (c++-mode . c++-ts-mode)
+        (c-mode . c-ts-mode)
+        (c++-mode . c++-ts-mode)
         ;; Add more modes here
         ))
 (defun my/treesit-custom-highlighting ()
@@ -562,8 +564,8 @@
                         (type . 'font-lock-type-face)))))
 
 
-(add-hook 'c-mode-hook 'my/treesit-custom-highlighting)
-(add-hook 'cpp-mode-hook 'my/treesit-custom-highlighting)
+(add-hook 'c-ts-mode-hook 'my/treesit-custom-highlighting)
+(add-hook 'c++-ts-mode-hook 'my/treesit-custom-highlighting)
 (add-hook 'python-ts-mode-hook 'my/treesit-custom-highlighting)
 
 (defun my/treesit-variable-highlighting ()
@@ -587,7 +589,39 @@
 ;; Add the hook to relevant major modes
 (add-hook 'c-mode-hook 'my/treesit-variable-highlighting)
 (add-hook 'cpp-mode-hook 'my/treesit-variable-highlighting)
+(defun my/treesit-enhanced-highlighting ()
+  "Enhanced Tree-sitter-based font-lock for distinguishing between variables, functions, and constants."
+  (setq-local treesit-font-lock-settings
+              (append treesit-font-lock-settings
+                      '(
+                        ;; Highlight local variables
+                        ((variable_declarator) @local-variable
+                         (:override t :face font-lock-variable-name-face))
 
+                        ;; Highlight member variables (fields)
+                        ((field_expression) @member-variable
+                         (:override t :face font-lock-type-face))
+
+                        ;; Highlight function/method calls
+                        ((call_expression function: (identifier) @function-call)
+                         (:override t :face font-lock-function-name-face))
+
+                        ;; Highlight constants
+                        ((constant_declaration) @constant
+                         (:override t :face font-lock-constant-face))
+
+                        ;; Optional: Highlight function parameters differently
+                        ((parameter_declaration) @parameter
+                         (:override t :face font-lock-variable-name-face))
+                        ))))
+
+;; Add hooks for the relevant major modes
+(add-hook 'c-mode-hook 'my/treesit-enhanced-highlighting)
+(add-hook 'c++-mode-hook 'my/treesit-enhanced-highlighting)
+(add-hook 'python-mode-hook 'my/treesit-enhanced-highlighting)
+(add-hook 'c-ts-mode-hook 'my/treesit-enhanced-highlighting)
+(add-hook 'c++-ts-mode-hook 'my/treesit-enhanced-highlighting)
+(add-hook 'python-ts-mode-hook 'my/treesit-enhanced-highlighting)
 
 
 
