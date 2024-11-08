@@ -36,6 +36,7 @@
   - [[#global-tree-sitter][Global Tree-sitter]]
   - [[#diff-disable][Diff Disable]]
   - [[#treesit][Treesit]]
+  - [[#evil-surround][Evil Surround]]
 - [[#debugging][Debugging]]
   - [[#dap][DAP]]
   - [[#dap-c][DAP C++]]
@@ -293,7 +294,7 @@
   "Toggle tree-sitter-hl-mode."
   (interactive)
   (if tree-sitter-hl-mode
-      (tree-sitter-hl-mode 0)
+      (tree-sitter-hl-mode nil)
     (tree-sitter-hl-mode t)))
 
 (map! :map lsp-mode-map :desc "Toggle tree sitter hl mode" :leader "t h" #'nb/toggle-tree-sitter-hl)
@@ -497,7 +498,7 @@
 #+end_src
 ** Global Tree-sitter
 #+begin_src elisp
-(add-hook! 'prog-mode-hook (setq tree-sitter-hl-mode t))
+;; (add-hook! 'prog-mode-hook (setq tree-sitter-hl-mode t))
 #+end_src
 ** Diff Disable
 #+begin_src emacs-lisp
@@ -510,23 +511,24 @@
 ** Treesit
 #+begin_src emacs-lisp
 (setq treesit-language-source-alist
-   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-     (cmake "https://github.com/uyha/tree-sitter-cmake")
-     (css "https://github.com/tree-sitter/tree-sitter-css")
-     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-     (go "https://github.com/tree-sitter/tree-sitter-go")
-     (html "https://github.com/tree-sitter/tree-sitter-html")
-     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-     (json "https://github.com/tree-sitter/tree-sitter-json")
-     (make "https://github.com/alemuller/tree-sitter-make")
-     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-     (python "https://github.com/tree-sitter/tree-sitter-python")
-     (toml "https://github.com/tree-sitter/tree-sitter-toml")
-     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-     (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-     (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "v0.22.0")
-     ))
+      '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+        (cmake "https://github.com/uyha/tree-sitter-cmake")
+        (css "https://github.com/tree-sitter/tree-sitter-css")
+        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+        (go "https://github.com/tree-sitter/tree-sitter-go")
+        (html "https://github.com/tree-sitter/tree-sitter-html")
+        (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+        (json "https://github.com/tree-sitter/tree-sitter-json")
+        (make "https://github.com/alemuller/tree-sitter-make")
+        (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+        (python "https://github.com/tree-sitter/tree-sitter-python")
+        (toml "https://github.com/tree-sitter/tree-sitter-toml")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+        (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+        ))
+(setq treesit-extra-load-path '("~/.config/emacs/.local/cache/tree-sitter"))
 
 (use-package treesit-auto
   :custom
@@ -534,97 +536,29 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
-(setq treesit-font-lock-level 4)
 
-(after! lsp-mode (setq lsp-enable-symbol-highlighting t))
-(use-package! treesit
-:hook ((python-mode . (lambda () (treesit-parser-create 'python)))
-       (c-mode . (lambda () (treesit-parser-create 'c)))
-       (c++-mode . (lambda () (treesit-parser-create 'cpp))))
-  :config
-  ;; Enable tree-sitter globally
-  (global-tree-sitter-mode)
-  ;; Enable highlight
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-(setq major-mode-remap-alist
-      '((python-mode . python-ts-mode)
-        (c-mode . c-ts-mode)
-        (c++-mode . c++-ts-mode)
-        ;; Add more modes here
-        ))
-(defun my/treesit-custom-highlighting ()
-  "Customize Tree-sitter's highlighting for better font-lock features."
-  (setq-local treesit-font-lock-settings
-              (append treesit-font-lock-settings
-                      '((member . 'font-lock-variable-name-face)
-                        (function . 'font-lock-function-name-face)
-                        (method . 'font-lock-function-name-face)
-                        (constant . 'font-lock-constant-face)
-                        (property . 'font-lock-variable-name-face)
-                        (type . 'font-lock-type-face)))))
+(use-package! treesit :ensure t :config (setq treesit-font-lock-level 4))
 
+;; 3. Configure LSP mode for C++
+(after! lsp-mode
+  (setq lsp-enable-on-type-formatting t
+        lsp-enable-indentation t
+        lsp-enable-snippet t
+        lsp-enable-imenu t
+        lsp-enable-relative-indentation t)
 
-(add-hook 'c-ts-mode-hook 'my/treesit-custom-highlighting)
-(add-hook 'c++-ts-mode-hook 'my/treesit-custom-highlighting)
-(add-hook 'python-ts-mode-hook 'my/treesit-custom-highlighting)
+  ;; Ensure LSP highlighting doesn't conflict with tree-sitter
+  (setq lsp-enable-symbol-highlighting t
+        lsp-semantic-tokens-enable t))
 
-(defun my/treesit-variable-highlighting ()
-  "Custom Tree-sitter-based font-lock for distinguishing local and class variables."
-  (setq-local treesit-font-lock-settings
-              (append treesit-font-lock-settings
-                      '(
-                        ;; Highlight local variables (typically as identifier nodes)
-                        ((variable_declarator) @local-variable
-                         (:override t :face font-lock-variable-name-face))
-
-                        ;; Highlight class variables (members)
-                        ((field_expression) @class-variable
-                         (:override t :face font-lock-type-face))
-
-                        ;; Optional: Highlight function parameters differently
-                        ((parameter_declaration) @parameter
-                         (:override t :face font-lock-variable-name-face))
-                        ))))
-
-;; Add the hook to relevant major modes
-(add-hook 'c-mode-hook 'my/treesit-variable-highlighting)
-(add-hook 'cpp-mode-hook 'my/treesit-variable-highlighting)
-(defun my/treesit-enhanced-highlighting ()
-  "Enhanced Tree-sitter-based font-lock for distinguishing between variables, functions, and constants."
-  (setq-local treesit-font-lock-settings
-              (append treesit-font-lock-settings
-                      '(
-                        ;; Highlight local variables
-                        ((variable_declarator) @local-variable
-                         (:override t :face font-lock-variable-name-face))
-
-                        ;; Highlight member variables (fields)
-                        ((field_expression) @member-variable
-                         (:override t :face font-lock-type-face))
-
-                        ;; Highlight function/method calls
-                        ((call_expression function: (identifier) @function-call)
-                         (:override t :face font-lock-function-name-face))
-
-                        ;; Highlight constants
-                        ((constant_declaration) @constant
-                         (:override t :face font-lock-constant-face))
-
-                        ;; Optional: Highlight function parameters differently
-                        ((parameter_declaration) @parameter
-                         (:override t :face font-lock-variable-name-face))
-                        ))))
-
-;; Add hooks for the relevant major modes
-(add-hook 'c-mode-hook 'my/treesit-enhanced-highlighting)
-(add-hook 'c++-mode-hook 'my/treesit-enhanced-highlighting)
-(add-hook 'python-mode-hook 'my/treesit-enhanced-highlighting)
-(add-hook 'c-ts-mode-hook 'my/treesit-enhanced-highlighting)
-(add-hook 'c++-ts-mode-hook 'my/treesit-enhanced-highlighting)
-(add-hook 'python-ts-mode-hook 'my/treesit-enhanced-highlighting)
-
-
-
+#+end_src
+** Evil Surround
+#+begin_src emacs-lisp
+(use-package! embrace)
+(use-package! evil-embrace)
+(use-package! evil-surround :config (global-evil-surround-mode 1))
+;; (add-hook! 'cpp-mode-hook (push '(?{ . ("{ " . " }")) evil-surround-pairs-alist))
+;; (add-hook! 'c++-mode-hook (push '(?[ . ("[ " . " ]")) evil-surround-pairs-alist))
 #+end_src
 * Debugging
 ** DAP
