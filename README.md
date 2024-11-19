@@ -50,10 +50,12 @@ The alacritty configuration lays in `dot-config/alacritty/alacritty.toml`
 My personal doom emacs configuration
 
 - Install doom emacs from [this link](https://github.com/doomemacs/doomemacs?tab=readme-ov-file#install)
+
 It contains various sections and definitions for:
   - Programming languages
   - LSP definitions
   - Keybindings
+
 It uses org mode and literate programming so the `config.org` should be self descriptive
 
 ### Dunst
