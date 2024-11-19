@@ -57,13 +57,16 @@ It contains various sections and definitions for:
 It uses org mode and literate programming so the `config.org` should be self descriptive
 
 ### Dunst
+
 A simple notification client/daemon
 No longer in use do to XFCE set-up, however it's quite useful if you're going for a barebones i3 configuration
 
 ### i3
+
 Simple i3 configuration for my XFCE setup
 contains multiple keybindings and rules
 Uses:
+
 - alacritty as a terminal
 - chromium as a browser
 - inconsolata nerd font
@@ -73,13 +76,17 @@ can all be installed throught
 `sudo pacman -S i3 i3status i3lock rofi dmenu xss-lock --needed`
 
 ### Neovim
-Please refere to my (neovim github)[https://github.com/spounka/neovim.git]
+
+Please refere to my [neovim github]( https://github.com/spounka/neovim.git )
 
 ### Picom
+
 a transparency daemon / utility for eye candy
 
 ### Ranger
+
 a terminal based file manager
 
 ### Rofi
+
 a simple utility to replace dmenu, launches apps and commands through a neat sidepanel
