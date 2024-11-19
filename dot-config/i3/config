@@ -294,7 +294,7 @@ bindsym $mod+Ctrl+Shift+greater move workspace to output right
 bindsym $mod+Ctrl+Shift+less move workspace to output left
 
 bindsym $mod+Shift+p [instance="keepassxc"] scratchpad show, move position center
-for_window [instance="keepassxc" window_type="normal"] floating enable, resize set 800 800, move scratchpad;
+for_window [instance="keepassxc" window_type="normal"] floating enable, resize set 1280 720, move scratchpad;
 
 # class                 border  bground text    indicator child_border
 client.focused          #83CAFA #51A2DA #FFFFFF #83CAFA   #51A2DA
@@ -308,12 +308,12 @@ client.background       #FFFFFF
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  tray_output eDP-1
+  tray_output primary
   position top
   status_command i3status
   # status_command i3blocks
   i3bar_command i3bar
-  font pango:Inconsolata Nerd Font 14
+  font pango:Inconsolata Nerd Font 12
 
   colors {
     background #222222FF
