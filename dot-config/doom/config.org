@@ -540,16 +540,16 @@
 (use-package! treesit :ensure t :config (setq treesit-font-lock-level 4))
 
 ;; 3. Configure LSP mode for C++
-(after! lsp-mode
-  (setq lsp-enable-on-type-formatting t
-        lsp-enable-indentation t
-        lsp-enable-snippet t
-        lsp-enable-imenu t
-        lsp-enable-relative-indentation t)
+;; (after! lsp-mode
+;;   (setq lsp-enable-on-type-formatting t
+;;         lsp-enable-indentation t
+;;         lsp-enable-snippet t
+;;         lsp-enable-imenu t
+;;         lsp-enable-relative-indentation t)
 
-  ;; Ensure LSP highlighting doesn't conflict with tree-sitter
-  (setq lsp-enable-symbol-highlighting t
-        lsp-semantic-tokens-enable t))
+;;   ;; Ensure LSP highlighting doesn't conflict with tree-sitter
+;;   (setq lsp-enable-symbol-highlighting t
+;;         lsp-semantic-tokens-enable t))
 
 #+end_src
 ** Evil Surround
