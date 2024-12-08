@@ -11,8 +11,8 @@
 
 set $mod Mod4
 set $alt Mod1
-set $terminal alacritty
-set $browser chromium
+set $terminal kitty
+set $browser brave
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
