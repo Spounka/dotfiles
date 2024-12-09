@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Custom i3lock
+Exec=xfconf-query -c xfce4-session -p /general/LockCommand -s "i3lock -c 222222 --nofork"
+X-GNOME-Autostart-enabled=true
