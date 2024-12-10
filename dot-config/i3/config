@@ -277,6 +277,7 @@ for_window [class="Galculator" instance="galculator"] floating enable;
 
 
 assign [class="thunderbird"] $ws2
+for_window [class="thunderbird" floating] move to workspace current
 
 assign [class="discord"] $ws3
 assign [class="TelegramDesktop"] $ws3
