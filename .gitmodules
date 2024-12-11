@@ -1,4 +1,0 @@
-[submodule "dot-config/nvim"]
-	path = dot-config/nvim
-	url = git@github.com:Spounka/neovim.git
-	branch = main
