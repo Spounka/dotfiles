@@ -3,3 +3,5 @@ custom.el
 lazy-lock.json
 __pycache__
 cmus/*
+
+*/tmux/plugins/*
