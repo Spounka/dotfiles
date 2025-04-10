@@ -43,13 +43,20 @@
 
 ;; Evil mode
 (use-package evil :init (evil-mode 1))
+(use-package evil-surround)
+(use-package evil-snipe)
+(use-package evil-numbers)
 
 ;; Ivy
 (use-package ivy :init (ivy-mode 1))
+(use-package vertico :init (vertico-mode 1))
+
 ;; eye candy
 (use-package all-the-icons)
 (use-package doom-modeline :init (doom-modeline-mode 1))
 (use-package doom-themes :init (load-theme 'doom-monokai-classic))
+(use-package hl-todo)
+(use-package vterm)
 
 ;; Magit
 (use-package magit)
