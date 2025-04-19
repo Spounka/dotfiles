@@ -148,3 +148,36 @@
   :ensure t
   :after projectile)
 
+(use-package lsp-treemacs
+  :ensure t
+  :after (lsp treemacs))
+
+;; LSP
+(use-package lsp-mode
+  :ensure t
+  :config
+  (add-hook 'c++-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'c-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'python-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'go-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'js-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'typescript-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'java-ts-mode-hook' #'lsp-deferred)
+  (add-hook 'latex-mode-hook' #'lsp-deferred))
+
+(add-to-list 'load-path "~/.emacs.d/tree-sitter/lib")
+
+(use-package lsp-ui :after lsp-mode)
+
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-company-mode))
+
+(use-package lsp-treemacs)
+(use-package dap-mode)
