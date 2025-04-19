@@ -87,7 +87,6 @@
 (use-package ivy :init (ivy-mode 0))
 (use-package vertico :init (vertico-mode 1))
 (use-package vertico-posframe
-  :after vertico-mode
   :ensure t
   :init (vertico-posframe-mode 1))
 (use-package savehist :init (savehist-mode))
