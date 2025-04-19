@@ -5,3 +5,5 @@ __pycache__
 cmus/*
 
 */tmux/plugins/*
+*.elc
+/dot-emacs.d/.cache/
