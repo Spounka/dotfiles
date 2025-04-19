@@ -134,3 +134,17 @@
 (with-eval-after-load 'markdown-mode
   (define-key markdown-mode-map (kbd "C-c C-e") #'markdown-do))
 
+;; Projectile
+(use-package projectile
+  :ensure t)
+
+;; Treemacs with integration of other stuff
+(use-package treemacs)
+(use-package treemacs-evil
+  :ensure t
+  :after evil)
+
+(use-package treemacs-projectile
+  :ensure t
+  :after projectile)
+
