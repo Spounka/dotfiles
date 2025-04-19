@@ -27,7 +27,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 export QT_STYLE_OVERRIDE=kvantum
-export GTK_THEME=Materia:dark
+# export GTK_THEME=Materia:dark
 
 
 autoload -Uz compinit
