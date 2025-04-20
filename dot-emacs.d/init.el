@@ -193,3 +193,10 @@
 
 (use-package dap-mode :ensure t)
 
+;; poetry mode
+(use-package
+  poetry
+  :straight
+  (poetry :type git :host github :repo "emil-vdw/emacs-poetry")
+  :bind (("C-c m" . poetry-transient)))
+
