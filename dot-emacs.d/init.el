@@ -89,8 +89,6 @@
 (use-package evil-numbers)
 (use-package which-key :init (which-key-mode))
 
-;; Ivy
-(use-package ivy :init (ivy-mode 0))
 (use-package vertico :init (vertico-mode 1))
 (use-package vertico-posframe
   :ensure t
