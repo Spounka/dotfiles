@@ -161,14 +161,13 @@
 (use-package lsp-mode
   :ensure t
   :config
-  (add-hook 'c++-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'c-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'python-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'go-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'js-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'typescript-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'java-ts-mode-hook' #'lsp-deferred)
-  (add-hook 'latex-mode-hook' #'lsp-deferred))
+  (add-hook 'c++-ts-mode-hook' #'lsp)
+  (add-hook 'c-ts-mode-hook' #'lsp)
+  (add-hook 'go-ts-mode-hook' #'lsp)
+  (add-hook 'js-ts-mode-hook' #'lsp)
+  (add-hook 'typescript-ts-mode-hook' #'lsp)
+  (add-hook 'java-ts-mode-hook' #'lsp)
+  (add-hook 'latex-mode-hook' #'lsp))
 
 (add-to-list 'load-path "~/.emacs.d/tree-sitter/lib")
 
