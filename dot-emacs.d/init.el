@@ -66,8 +66,11 @@
   (evil-define-key nil 'global (kbd "C-j") 'evil-window-down)
   (evil-define-key nil 'global (kbd "C-k") 'evil-window-up)
   (evil-define-key nil 'global (kbd "C-l") 'evil-window-right)
-  ;; (evil-define-key nil 'global (kbd "C-h") 'evil-window-left)
+  (evil-define-key '(normal insert visual motion replace) 'global (kbd "C-h") 'evil-window-left)
   (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
+  (evil-define-key 'normal 'global (kbd "<leader>op") 'treemacs)
+  (evil-define-key 'normal 'global (kbd "<leader>pc") 'compile)
+  (evil-define-key 'normal 'global (kbd "<leader>pe") 'async-shell-command)
   (evil-define-key 'normal 'global (kbd "<leader>:") 'execute-extended-command))
 
 (use-package evil-collection
