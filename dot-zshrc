@@ -84,7 +84,7 @@ fi
 source ~/.zsh-autopair/autopair.zsh
 autopair-init
 
-plugins=(dnf docker docker-compose dirhistory git zsh-autosuggestions zsh-syntax-highlighting fzf z)
+plugins=(docker docker-compose dirhistory git zsh-autosuggestions zsh-syntax-highlighting fzf z poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,5 +122,4 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 export FLYCTL_INSTALL="/home/spounka/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
 
