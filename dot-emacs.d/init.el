@@ -169,6 +169,14 @@
   (add-hook 'java-ts-mode-hook' #'lsp)
   (add-hook 'latex-mode-hook' #'lsp))
 
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
+
 (add-to-list 'load-path "~/.emacs.d/tree-sitter/lib")
 
 (use-package lsp-ui :after lsp-mode)
