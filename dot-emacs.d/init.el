@@ -99,8 +99,9 @@
 (use-package all-the-icons)
 (use-package doom-modeline :init (doom-modeline-mode 1))
 (use-package doom-themes
-  :init (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t)
+  :init
+  (setq doom-themes-enable-bold t)
+  (setq doom-themes-enable-italic t)
   :config
   (load-theme 'doom-monokai-classic)
   (doom-themes-org-config))
