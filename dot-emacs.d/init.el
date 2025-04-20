@@ -52,6 +52,7 @@
   :config
   (evil-mode 1)
   (evil-set-leader 'normal (kbd "SPC"))
+  (evil-set-leader 'normal (kbd "\\") t)
   (evil-set-leader 'emacs (kbd "\\") t)
 
   (setq evil-want-C-u-scroll t)
