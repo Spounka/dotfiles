@@ -191,5 +191,5 @@
   :config
   (add-hook 'after-init-hook #'global-company-mode))
 
-(use-package lsp-treemacs)
-(use-package dap-mode)
+(use-package dap-mode :ensure t)
+
