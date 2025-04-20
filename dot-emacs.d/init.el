@@ -85,7 +85,7 @@
   :config
   (global-evil-surround-mode 1))
 
-(use-package evil-snipe)
+(use-package evil-snipe :init (evil-snipe-mode))
 (use-package evil-numbers)
 (use-package which-key :init (which-key-mode))
 
