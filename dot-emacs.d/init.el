@@ -147,7 +147,7 @@
 (use-package treemacs)
 (use-package treemacs-evil
   :ensure t
-  :after evil)
+  :after (evil treemacs))
 
 (use-package treemacs-projectile
   :ensure t
