@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+;;; init.el --- emacs config file
 ;; disable package.eL loading init.el at startup
 (setq package-enable-at-startup nil)
 ;; custom variables file
