@@ -5,8 +5,7 @@
 Clone the repository to your $HOME
 
 ```bash
-git clone git@github.com:Spounka/dotfiles.git
-$HOME/dotfiles --recrusive --depth 1
+git clone git@github.com:Spounka/dotfiles.git $HOME/dotfiles --recrusive --depth 1
 ```
 
 ## Dependencies
