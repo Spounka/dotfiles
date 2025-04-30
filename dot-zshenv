@@ -36,6 +36,7 @@ compinit
 
 #Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
 source <(ng completion script)
-source /usr/share/nvm/init-nvm.sh
 
-export IDF_PATH="/opt/esp-idf/"
+# source /usr/share/nvm/init-nvm.sh
+
+# export IDF_PATH="/opt/esp-idf/"
