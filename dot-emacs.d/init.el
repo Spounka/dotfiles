@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 ;;; init.el --- emacs config file
-;; disable package.eL loading init.el at startup
+;;; disable package.eL loading init.el at startup
 (setq package-enable-at-startup nil)
 ;; custom variables file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -15,6 +15,8 @@
 (global-hl-line-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
+
+(add-to-list 'completion-styles-alist '("flex" "partial-completion"))
 
 ;; Font settings
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" )
@@ -76,7 +78,9 @@
 (use-package evil-collection
   :after evil
   :ensure t
-  :config
+  :custom
+  (evil-collection-setup-minibuffer t)
+  :init
   (evil-collection-init))
 
 (use-package evil-surround
@@ -200,3 +204,108 @@
   (poetry :type git :host github :repo "emil-vdw/emacs-poetry")
   :bind (("C-c m" . poetry-transient)))
 
+
+;; Org mode
+;; (setq org-hide-emphasis-markers t)
+;; (use-package org-bullets
+;;     :config
+;;     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;; ;; Resize Org headings
+;; ;; (dolist (face '((org-level-1 . 1.35)
+;; ;;                 (org-level-2 . 1.3)
+;; ;;                 (org-level-3 . 1.2)
+;; ;;                 (org-level-4 . 1.1)
+;; ;;                 (org-level-5 . 1.1)
+;; ;;                 (org-level-6 . 1.1)
+;; ;;                 (org-level-7 . 1.1)
+;; ;;                 (org-level-8 . 1.1)))
+;; ;;   (set-face-attribute (car face) nil :font "Iosevka Nerd Font" :weight 'bold :height (cdr face)))
+
+;; ;; ;; Make the document title a bit bigger
+;; (set-face-attribute 'org-document-title nil :font "Iosevka NF" :weight
+;; 'bold :height 1.8)
+
+;; (require 'org-indent)
+;; (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+
+;; (set-face-attribute 'org-block nil            :foreground nil :inherit
+;; 'fixed-pitch :height 0.85)
+;; (set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.85)
+;; (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.85)
+;; (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.85)
+;; (set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face
+;; fixed-pitch))
+;; (set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
+;; (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+
+;; (add-hook 'org-mode-hook 'variable-pitch-mode)
+
+;; ;; only enable in case of latex preview problems
+
+;; ;; (plist-put org-format-latex-options :scale 2)
+
+;; (setq org-adapt-indentation t
+;;       org-hide-leading-stars t
+;;       org-hide-emphasis-markers t
+;;       org-pretty-entities t
+;;       org-ellipsis "  ·")
+
+;; (setq org-src-fontify-natively t
+;; 	  org-src-tab-acts-natively t
+;;       org-edit-src-content-indentation 0)
+
+;; (add-hook 'org-mode-hook 'visual-line-mode)
+
+;; (use-package olivetti)
+;; (add-hook 'org-mode-hook 'olivetti-mode)
+
+
+(use-package org-superstar
+  :ensure t
+  :hook (org-mode . org-superstar-mode)
+  :custom
+  (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●")))
+
+(setq org-hide-emphasis-markers t)
+
+(add-hook 'org-mode-hook #'variable-pitch-mode)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka Nerd Font Mono")
+(set-face-attribute 'variable-pitch nil :family "LiterationMono Nerd Font")
+
+(setq org-startup-indented t
+      org-fontify-whole-heading-line t
+      org-fontify-quote-blocks t
+      org-fontify-todo-headline t)
+
+(use-package org-modern
+  :ensure t
+  :hook (org-mode . org-modern-mode)
+  :config
+  (setq org-modern-star '("✷" "✸" "✹" "✺" "✻"))
+  (setq org-modern-table-vertical 0.5))
+
+;; (setq org-export-dispatch-use-expert-ui t)
+(use-package toc-org
+  :ensure t
+  :hook (org-mode . toc-org-mode)
+  :config
+  ;; Optional: customize maximum depth (default 2) or link style:
+  ;; (setq toc-org-href-style "github")
+  )
+
+
+
+;; compilation mode
+(with-eval-after-load 'compile
+  ;; Remove Doom’s ANSI-color hook (Emacs < 28 uses doom-apply-ansi-color-to-compilation-buffer-h)
+  (remove-hook 'compilation-filter-hook #'doom-apply-ansi-color-to-compilation-buffer-h)
+  ;; Use the built-in ANSI color filter
+  (add-hook 'compilation-filter-hook #'ansi-color-compilation-filter))
+
+(add-hook 'compilation-filter-hook #'comint-truncate-buffer)
+
+(setq compilation-scroll-output 'first-error
+      compilation-auto-jump-to-first-error t)
+
+(setq compilation-ask-about-save nil)
