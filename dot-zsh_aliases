@@ -1,7 +1,7 @@
 # bash aliases
 
 # system commands fixes
-alias sudo='sudo '
+# alias sudo='sudo '
 alias ls="ls --group-directories-first --color=auto "
 alias cp="cp -vi"
 alias rm="rm -vi"
