@@ -16,7 +16,18 @@
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
 
-(add-to-list 'completion-styles-alist '("flex" "partial-completion"))
+;; Fuzzy (flex) matching:
+(if (fboundp 'fido-mode)
+    (progn
+      (fido-mode 1)  ;; enable built‑in FIDO (flex) completion
+      (setq completion-styles '(flex basic)
+            completion-category-defaults nil
+            completion-category-overrides '((file (styles basic flex)))))
+  ;; fallback to IDO if FIDO unavailable
+  (require 'ido)
+  (ido-mode 1)
+  (setq ido-enable-flex-matching t
+        ido-case-fold t))  ;; flex matching & ignore case in IDO
 
 ;; Font settings
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" )
@@ -309,3 +320,8 @@
       compilation-auto-jump-to-first-error t)
 
 (setq compilation-ask-about-save nil)
+
+;; Case‑insensitive completion:
+(setq completion-ignore-case t                         ;; general completion
+      read-file-name-completion-ignore-case t         ;; file/directory C-x C-f
+      read-buffer-completion-ignore-case t)           ;; buffer names
