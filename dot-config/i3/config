@@ -61,7 +61,7 @@ bindsym $mod+shift+d exec --no-startup-id emcl
 bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
-bindsym $mod+shift+g exec --no-startup-id doom +everywhere
+bindsym $mod+shift+g exec --no-startup-id emacsclient --eval "(emacs-everywhere)"
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
