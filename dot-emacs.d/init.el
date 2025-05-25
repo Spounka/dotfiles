@@ -325,3 +325,7 @@
 (setq completion-ignore-case t                         ;; general completion
       read-file-name-completion-ignore-case t         ;; file/directory C-x C-f
       read-buffer-completion-ignore-case t)           ;; buffer names
+
+;; Emacs Everywhere
+(use-package emacs-everywhere)
+
