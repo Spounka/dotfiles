@@ -19,3 +19,5 @@ export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
 
 export EMSDK_QUIET=1
 source "/usr/lib/emsdk/emsdk_env.sh"
+
+# vim: set ft=zsh :

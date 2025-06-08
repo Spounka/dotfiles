@@ -29,3 +29,5 @@ alias emcl="~/.scripts/emcl.sh"
 # Wine Stuff
 alias w32="WINEARCH=win32 WINEDEBUG=-all WINEPREFIX=~/.local/share/wineprefixes/wine/ wine"
 alias w64="WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=~/.local/share/wineprefixes/wine64/ wine"
+
+# vim: set ft=zsh :

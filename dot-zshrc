@@ -123,3 +123,5 @@ fi
 export FLYCTL_INSTALL="/home/spounka/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+
+# vim: set ft=zsh :

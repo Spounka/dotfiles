@@ -60,3 +60,6 @@ source /usr/share/nvm/init-nvm.sh
 >>>>>>> theirs
 
 export IDF_PATH="/opt/esp-idf/"
+
+
+# vim: set ft=zsh :
