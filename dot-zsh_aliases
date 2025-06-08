@@ -9,16 +9,9 @@ alias mv="mv -vi"
 
 # system commands aliases
 alias cls="clear"
-alias r="ranger"
-alias q="exit"
-alias l="ls "
 alias ll="ls -al "
 
 # abbreviations
-alias qb="qutebrowser"
-alias p="python3"
-alias p2="python"
-alias pi="pip3"
 alias dup='docker compose up '
 alias dcd='docker compose down '
 
@@ -31,6 +24,7 @@ alias screenshot="/home/spounka/.scripts/screenshot.sh"
 alias nmsp="~/.scripts/wifi.sh Spounka"
 alias nmaz="~/.scripts/wifi.sh D-AZZEDINE"
 alias armorpaints="armorpaint"
+alias emcl="~/.scripts/emcl.sh"
 
 # Wine Stuff
 alias w32="WINEARCH=win32 WINEDEBUG=-all WINEPREFIX=~/.local/share/wineprefixes/wine/ wine"

@@ -120,6 +120,6 @@ fi
 if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases;
 fi
-# export FLYCTL_INSTALL="/home/spounka/.fly"
-# export PATH="$FLYCTL_INSTALL/bin:$PATH"
-#
+export FLYCTL_INSTALL="/home/spounka/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+

@@ -35,8 +35,28 @@ autoload -Uz compinit
 compinit
 
 #Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
+source /usr/share/nvm/init-nvm.sh
 source <(ng completion script)
 
-# source /usr/share/nvm/init-nvm.sh
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< Updated upstream
+=======
+source /usr/share/nvm/init-nvm.sh
+>>>>>>> Stashed changes
+=======
+source /usr/share/nvm/init-nvm.sh
+>>>>>>> theirs
+=======
+source /usr/share/nvm/init-nvm.sh
+>>>>>>> theirs
+=======
+source /usr/share/nvm/init-nvm.sh
+>>>>>>> theirs
+=======
+source /usr/share/nvm/init-nvm.sh
+>>>>>>> theirs
 
-# export IDF_PATH="/opt/esp-idf/"
+export IDF_PATH="/opt/esp-idf/"
