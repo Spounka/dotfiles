@@ -80,6 +80,7 @@
   (evil-define-key nil 'global (kbd "C-k") 'evil-window-up)
   (evil-define-key nil 'global (kbd "C-l") 'evil-window-right)
   (evil-define-key '(normal insert visual motion replace) 'global (kbd "C-h") 'evil-window-left)
+  (evil-define-key 'normal 'global (kbd "<leader>-") 'dired)
   (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
   (evil-define-key 'normal 'global (kbd "<leader>op") 'treemacs)
   (evil-define-key 'normal 'global (kbd "<leader>pc") 'compile)
