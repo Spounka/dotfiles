@@ -13,7 +13,7 @@ export PATH=$PATH:$HOME/.config/emacs/bin
 export EDITOR=/usr/bin/nvim
 
 export PATH=$PATH:"$HOME/.config/rofi/scripts"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export PATH="$HOME/go/bin:$PATH"
 export XDG_CURRENT_DESKTOP_GNOME
@@ -35,7 +35,9 @@ autoload -Uz compinit
 compinit
 
 #Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
-export IDF_PATH="/opt/esp-idf/"
+source <(ng completion script)
 
+
+if [ -e /home/nazih/.nix-profile/etc/profile.d/nix.sh ]; then . /home/nazih/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # vim: set ft=zsh :
