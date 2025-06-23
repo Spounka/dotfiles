@@ -271,6 +271,7 @@ for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 for_window [title="Wayland to X Recording bridge" class="xwaylandvideobridge"] kill;
 for_window [class="Protonvpn" instance="protonvpn"] floating enable;
 for_window [class="MEGAsync" instance="megasync"] floating enable, resize set 400 500;
+for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable, resize set 360 616;
 
 for_window [floating] border none;
 for_window [instance="emacs-everywhere"] floating enable, resize set 800 600;
