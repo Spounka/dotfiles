@@ -12,7 +12,7 @@
 set $mod Mod4
 set $alt Mod1
 set $terminal kitty
-set $browser brave-browser
+set $browser brave
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -26,7 +26,7 @@ default_border pixel 1
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 222222 --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --show-keyboard-layout -c 222222 --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -58,7 +58,7 @@ bindsym $mod+shift+b exec --no-startup-id $browser
 bindsym $mod+shift+z exec --no-startup-id zenkit
 bindsym $mod+shift+d exec --no-startup-id emcl
 
-bindsym $mod+mod1+l exec --no-startup-id i3lock -c 222222
+bindsym $mod+mod1+l exec --no-startup-id i3lock --show-keyboard-layout -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
 bindsym $mod+shift+g exec --no-startup-id emacsclient --eval "(emacs-everywhere)"
@@ -158,16 +158,16 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace $ws1  output HDMI-1
-workspace $ws2  output HDMI-1
-workspace $ws3  output HDMI-1
-workspace $ws4  output HDMI-1
-workspace $ws5  output HDMI-1
-workspace $ws6  output eDP-1
-workspace $ws7  output eDP-1
-workspace $ws8  output eDP-1
-workspace $ws9  output eDP-1
-workspace $ws10 output eDP-1
+workspace $ws1  output eDP-1
+workspace $ws2  output eDP-1
+workspace $ws3  output eDP-1
+workspace $ws4  output eDP-1
+workspace $ws5  output eDP-1
+workspace $ws6  output HDMI-1
+workspace $ws7  output HDMI-1
+workspace $ws8  output HDMI-1
+workspace $ws9  output HDMI-1
+workspace $ws10 output HDMI-1
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1

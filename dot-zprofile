@@ -18,6 +18,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
 
 export EMSDK_QUIET=1
-source "/usr/lib/emsdk/emsdk_env.sh"
+source "/home/spounka/Libraries/emsdk/emsdk_env.sh"
+export PATH="$PATH:/home/spounka/Libraries/emsdk"
 
 # vim: set ft=zsh :

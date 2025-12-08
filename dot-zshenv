@@ -11,12 +11,14 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.npm-global/bin
 export PATH=$PATH:$HOME/.config/emacs/bin
 export EDITOR=/usr/bin/nvim
+export TMUX_FORCE_256=1
 
 export PATH=$PATH:"$HOME/.config/rofi/scripts"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export PATH="$HOME/go/bin:$PATH"
 export XDG_CURRENT_DESKTOP_GNOME
+
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -33,6 +35,8 @@ export QT_STYLE_OVERRIDE=kvantum
 
 autoload -Uz compinit
 compinit
+
+source /usr/share/nvm/nvm.sh
 
 #Appended `source <(ng completion script)` to `/home/spounka/.zshrc`. Restart your terminal or run the following to autocomplete `ng` commands:
 source <(ng completion script)
