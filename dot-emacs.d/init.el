@@ -56,12 +56,15 @@
   (straight-use-package-by-default t))
 (use-package el-patch)
 
+(use-package undo-fu :ensure t)
+
 ;; Evil mode
 (use-package evil
   :ensure t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
+  (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1)
   (evil-set-leader 'normal (kbd "SPC"))
