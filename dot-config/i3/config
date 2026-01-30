@@ -62,6 +62,7 @@ bindsym $mod+mod1+l exec --no-startup-id i3lock --show-keyboard-layout -c 222222
 bindsym $mod+mod1+control+m scratchpad show
 bindsym $mod+shift+control+s move scratchpad
 bindsym $mod+shift+g exec --no-startup-id emacsclient --eval "(emacs-everywhere)"
+bindsym $mod+semicolon exec --no-startup-id emoji-picker
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
