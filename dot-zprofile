@@ -17,8 +17,11 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 # Added by Toolbox App
 export PATH="$PATH:/home/spounka/.local/share/JetBrains/Toolbox/scripts"
 
-export EMSDK_QUIET=1
-source "/home/spounka/Libraries/emsdk/emsdk_env.sh"
-export PATH="$PATH:/home/spounka/Libraries/emsdk"
+# export EMSDK_QUIET=1
+# source "/home/spounka/Libraries/emsdk/emsdk_env.sh"
+# export PATH="$PATH:/home/spounka/Libraries/emsdk"
+
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/spounka/.local/share/flatpak/exports/share"
 
 # vim: set ft=zsh :
