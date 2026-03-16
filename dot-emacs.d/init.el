@@ -16,6 +16,10 @@
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
 
+(require 'ls-lisp)
+(setq ls-lisp-dirs-first t)
+(setq ls-lisp-use-insert-directory-program nil)
+
 ;; Fuzzy (flex) matching:
 (if (fboundp 'fido-mode)
     (progn
