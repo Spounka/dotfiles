@@ -363,3 +363,14 @@
 	org-roam-ui-follow t
 	org-roam-ui-update-on-save t
 	org-roam-ui-open-on-start t))
+
+; Caldav testing
+(use-package org-caldav
+  :ensure t
+  :config
+  (setq org-caldav-url "http://localhost:5232/spounka/")
+  (setq org-caldav-calendar-id "life")
+  (setq org-caldav-inbox "~/Dropbox/org/life.org")
+  (setq org-caldav-files nil)
+  (setq org-icalendar-timezone "Africa/Algiers"))
+
