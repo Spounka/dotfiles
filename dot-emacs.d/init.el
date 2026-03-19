@@ -111,6 +111,7 @@
 (use-package evil-snipe :after evil :init (evil-snipe-mode))
 (use-package evil-numbers)
 (use-package which-key :init (which-key-mode))
+(use-package evil-mc :after evil :ensure t :config (global-evil-mc-mode 1))
 
 (use-package vertico :init (vertico-mode 1))
 (use-package vertico-posframe
