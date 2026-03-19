@@ -310,6 +310,7 @@
   (setq toc-org-href-style "github")
   )
 
+(setq org-todo-keywords '((sequence "TODO" "DOING" "|" "DONE" "CANCELED")))
 
 
 ;; compilation mode
