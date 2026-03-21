@@ -61,6 +61,7 @@
 (use-package el-patch)
 
 (use-package undo-fu :ensure t)
+(straight-use-package 'org)
 
 ;; Evil mode
 (use-package evil
@@ -228,7 +229,6 @@
 ;; Org mode
 (setq org-hide-emphasis-markers t)
 (use-package org-bullets
-    :after org
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
@@ -274,7 +274,7 @@
 
 (add-hook 'org-mode-hook 'visual-line-mode)
 
-(use-package olivetti :after org :ensure t :hook (org-mode . olivetti-mode))
+(use-package olivetti :ensure t :hook (org-mode . olivetti-mode))
 
 
 (use-package org-superstar
