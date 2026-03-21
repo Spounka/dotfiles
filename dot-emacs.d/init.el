@@ -362,6 +362,8 @@
 	org-roam-ui-update-on-save t
 	org-roam-ui-open-on-start t))
 
+(setq auth-sources '("~/.authinfo.gpg"))
+
 ; Caldav testing
 (use-package org-caldav
   :ensure t
