@@ -233,19 +233,19 @@
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; Resize Org headings
-(dolist (face '((org-level-1 . 1.35)
-                (org-level-2 . 1.3)
-                (org-level-3 . 1.2)
-                (org-level-4 . 1.1)
-                (org-level-5 . 1.1)
-                (org-level-6 . 1.1)
-                (org-level-7 . 1.1)
-                (org-level-8 . 1.1)))
-  (set-face-attribute (car face) nil :font "Iosevka Nerd Font" :weight 'bold :height (cdr face)))
+;; (dolist (face '((org-level-1 . 1.35)
+;;                 (org-level-2 . 1.3)
+;;                 (org-level-3 . 1.2)
+;;                 (org-level-4 . 1.1)
+;;                 (org-level-5 . 1.1)
+;;                 (org-level-6 . 1.1)
+;;                 (org-level-7 . 1.1)
+;;                 (org-level-8 . 1.1)))
+;;   (set-face-attribute (car face) nil :font "Iosevka Nerd Font" :weight 'bold :height (cdr face)))
 
 ;; Make the document title a bit bigger
-(set-face-attribute 'org-document-title nil :font "Iosevka NF" :weight
-'bold :height 1.8)
+;; (set-face-attribute 'org-document-title nil :font "Iosevka NF" :weight
+;; 'bold :height 1.8)
 
 (require 'org-indent)
 (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
