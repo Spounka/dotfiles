@@ -93,7 +93,8 @@
   (evil-define-key 'normal 'global (kbd "<leader>op") 'treemacs)
   (evil-define-key 'normal 'global (kbd "<leader>pc") 'compile)
   (evil-define-key 'normal 'global (kbd "<leader>pe") 'async-shell-command)
-  (evil-define-key 'normal 'global (kbd "<leader>:") 'execute-extended-command))
+  (evil-define-key 'normal 'global (kbd "<leader>:") 'execute-extended-command)
+  (evil-define-key 'normal org-mode-map (kbd "gf") 'org-open-at-point))
 
 (use-package evil-collection
   :after evil
