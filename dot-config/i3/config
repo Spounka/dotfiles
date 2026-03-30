@@ -280,6 +280,8 @@ for_window [class="install4j-RV" title="win0"] floating enable;
 for_window [class="Xfce4-panel" instance="xfce4-panel"] floating enable;
 for_window [class="Galculator" instance="galculator"] floating enable;
 for_window [class="qalculate-qt" instance="qalculate-qt"] floating enable;
+for_window [class="kdeconnect.daemon"] fullscreen disable, floating enable, border none, resize set 100 ppt 100 ppt, move position 0 0;
+focus_on_window_activation none
 
 
 assign [class="thunderbird"] $ws2
