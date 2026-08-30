@@ -126,8 +126,9 @@
 	completion-category-overrides '((file (styles basic flex))))
 
 ;; eye candy
-(use-package all-the-icons)
-(use-package doom-modeline :init (doom-modeline-mode 1))
+(use-package nerd-icons :ensure t)
+(use-package doom-modeline :ensure t :init (doom-modeline-mode 1)
+			   :custom (setq doom-modeline-icon t))
 (use-package doom-themes
   :init
   (setq doom-themes-enable-bold t)
