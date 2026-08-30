@@ -9,4 +9,4 @@ cmus/*
 /dot-emacs.d/.cache/
 /dot-emacs.d/.lsp-session-v1
 /dot-emacs.d/projects
-dot-emacs.d/
+/dot-emacs.d/projectile-frecency.eld
