@@ -20,18 +20,18 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 
-;; Fuzzy (flex) matching:
-(if (fboundp 'fido-mode)
-    (progn
-      (fido-mode 1)  ;; enable built‑in FIDO (flex) completion
-      (setq completion-styles '(flex basic)
-            completion-category-defaults nil
-            completion-category-overrides '((file (styles basic flex)))))
-  ;; fallback to IDO if FIDO unavailable
-  (require 'ido)
-  (ido-mode 1)
-  (setq ido-enable-flex-matching t
-        ido-case-fold t))  ;; flex matching & ignore case in IDO
+;; ;; Fuzzy (flex) matching:
+;; (if (fboundp 'fido-mode)
+;;     (progn
+;;       (fido-mode 1)  ;; enable built‑in FIDO (flex) completion
+;;       (setq completion-styles '(flex basic)
+;;             completion-category-defaults nil
+;;             completion-category-overrides '((file (styles basic flex)))))
+;;   ;; fallback to IDO if FIDO unavailable
+;;   (require 'ido)
+;;   (ido-mode 1)
+;;   (setq ido-enable-flex-matching t
+;;         ido-case-fold t))  ;; flex matching & ignore case in IDO
 
 ;; Font settings
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" )
