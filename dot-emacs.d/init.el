@@ -121,6 +121,10 @@
   :init (vertico-posframe-mode 1))
 (use-package savehist :init (savehist-mode))
 
+(setq completion-styles '(flex basic)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles basic flex))))
+
 ;; eye candy
 (use-package all-the-icons)
 (use-package doom-modeline :init (doom-modeline-mode 1))
