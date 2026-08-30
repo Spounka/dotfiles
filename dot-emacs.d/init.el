@@ -198,6 +198,8 @@
   (add-hook 'js-ts-mode-hook' #'lsp)
   (add-hook 'typescript-ts-mode-hook' #'lsp)
   (add-hook 'java-ts-mode-hook' #'lsp)
+  (add-hook 'gdscript-ts-mode-hook #'lsp-deferred)
+  (add-hook 'gdscript-mode-hook #'lsp-deferred)
   (add-hook 'latex-mode-hook' #'lsp))
 
 (use-package lsp-pyright
@@ -380,3 +382,17 @@
   (setq org-caldav-files nil)
   (setq org-icalendar-timezone "Africa/Algiers"))
 
+;; GDScript Mode
+(use-package gdscript-mode
+    :straight (gdscript-mode
+               :type git
+               :host github
+               :repo "godotengine/emacs-gdscript-mode"))
+
+(defun gdscript-disable-code-action-lsp-config ()
+  (setq-local lsp-modeline-code-actions-enable nil)
+  (when (boundp 'lsp-ui-sideline-show-code-actions)
+    (setq-local lsp-ui-sideline-show-code-actions nil)))
+
+(add-hook 'gdscript-mode-hook #'gdscript-disable-code-action-lsp-config)
+(add-hook 'gdscript-ts-mode-hook #'gdscript-disable-code-action-lsp-config)
