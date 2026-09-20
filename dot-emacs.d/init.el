@@ -25,6 +25,19 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 
+
+;; Keep backups and autosaves out of project directories
+(let ((backup-dir (expand-file-name "emacs/backups/" "~/.cache/"))
+      (autosave-dir (expand-file-name "emacs/autosaves/" "~/.cache/")))
+  (make-directory backup-dir t)
+  (make-directory autosave-dir t)
+
+  (setq backup-directory-alist
+        `(("." . ,backup-dir)))
+
+  (setq auto-save-file-name-transforms
+        `((".*" ,autosave-dir t))))
+
 ;; ;; Fuzzy (flex) matching:
 ;; (if (fboundp 'fido-mode)
 ;;     (progn
