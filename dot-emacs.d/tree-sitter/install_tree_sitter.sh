@@ -11,6 +11,7 @@ TREESIT_TS_URL="https://github.com/tree-sitter/tree-sitter-typescript"
 TREESIT_JAVA_URL="https://github.com/tree-sitter/tree-sitter-java"
 TREESIT_JSON_URL="https://github.com/tree-sitter/tree-sitter-json"
 TREESIT_TOML_URL="https://github.com/tree-sitter/tree-sitter-toml"
+TREESIT_LATEX_URL="https://github.com/latex-lsp/tree-sitter-latex"
 
 build_treesit_module() {
     local repo_url="$1"
@@ -27,7 +28,7 @@ build_treesit_module() {
     echo "[INFO] Building and installing $repo_name"
     make -C "$repo_name"
     echo "[INFO] Copying $repo_name/*.so to $(pwd)"
-    cp $(ls "$rep_name"*.so) .
+    cp $(ls "$repo_name"/**/*.so) .
 }
 
 build_treesit_module "$TREESIT_GO_URL" "v0.23.4"
@@ -41,3 +42,4 @@ build_treesit_module "$TREESIT_TS_URL" "v0.23.2"
 build_treesit_module "$TREESIT_JAVA_URL" "v0.23.1"
 build_treesit_module "$TREESIT_JSON_URL" "v0.24.8"
 build_treesit_module "$TREESIT_TOML_URL" "v0.5.1"
+build_treesit_module "$TREESIT_LATEX_URL" "v0.6.0"

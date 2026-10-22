@@ -16,6 +16,11 @@
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
 
+;; tabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
 (require 'ls-lisp)
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
@@ -37,6 +42,8 @@
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" )
 (set-frame-font "Iosevka Nerd Font Mono-18" nil t)
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font Mono-18"))
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Package Manager
 (defvar bootstrap-version)
@@ -192,15 +199,15 @@
 (use-package lsp-mode
   :ensure t
   :config
-  (add-hook 'c++-ts-mode-hook' #'lsp)
-  (add-hook 'c-ts-mode-hook' #'lsp)
-  (add-hook 'go-ts-mode-hook' #'lsp)
-  (add-hook 'js-ts-mode-hook' #'lsp)
-  (add-hook 'typescript-ts-mode-hook' #'lsp)
-  (add-hook 'java-ts-mode-hook' #'lsp)
+  (add-hook 'c++-ts-mode-hook #'lsp)
+  (add-hook 'c-ts-mode-hook #'lsp)
+  (add-hook 'go-ts-mode-hook #'lsp)
+  (add-hook 'js-ts-mode-hook #'lsp)
+  (add-hook 'typescript-ts-mode-hook #'lsp)
+  (add-hook 'java-ts-mode-hook #'lsp)
   (add-hook 'gdscript-ts-mode-hook #'lsp-deferred)
   (add-hook 'gdscript-mode-hook #'lsp-deferred)
-  (add-hook 'latex-mode-hook' #'lsp))
+  (add-hook 'latex-mode-hook #'lsp-deferred))
 
 (use-package lsp-pyright
   :ensure t
@@ -396,3 +403,30 @@
 
 (add-hook 'gdscript-mode-hook #'gdscript-disable-code-action-lsp-config)
 (add-hook 'gdscript-ts-mode-hook #'gdscript-disable-code-action-lsp-config)
+
+
+;; org-ox for mermaid in org files
+(use-package ox-hugo)
+(with-eval-after-load 'ox-hugo
+  (add-to-list 'org-hugo-special-block-type-properties '("mermaid" . (:raw t))))
+
+;; Docker Containers
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
+
+
+(use-package terraform-mode
+  ;; if using straight
+  ;; :straight t
+
+  ;; if using package.el
+  ;; :ensure t
+  :custom (terraform-indent-level 4)
+  :config
+  (defun my-terraform-mode-init ()
+    ;; if you want to use outline-minor-mode
+    (outline-minor-mode 1)
+    )
+
+  (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
