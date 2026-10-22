@@ -11,3 +11,6 @@ cmus/*
 /dot-emacs.d/projects
 /dot-emacs.d/projectile-frecency.eld
 /dot-emacs.d/projects.eld
+#TreeSitter language resources:
+*/tree-sitter/*
+!/tree-sitter/install_tree_sitter.sh
