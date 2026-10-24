@@ -122,6 +122,8 @@
   :custom
   (evil-collection-setup-minibuffer t)
   :init
+  (evil-collection-key-blacklist '("SPC"))
+  :config
   (evil-collection-init))
 
 (use-package evil-surround
@@ -212,6 +214,7 @@
 (use-package lsp-mode
   :ensure t
   :config
+  (add-hook 'python-ts-mode-hook #'lsp)
   (add-hook 'c++-ts-mode-hook #'lsp)
   (add-hook 'c-ts-mode-hook #'lsp)
   (add-hook 'go-ts-mode-hook #'lsp)
@@ -226,6 +229,9 @@
   :ensure t
   :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
   :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp)))
+        (python-ts-mode . (lambda ()
                           (require 'lsp-pyright)
                           (lsp))))  ; or lsp-deferred
 
@@ -443,3 +449,19 @@
     )
 
   (add-hook 'terraform-mode-hook 'my-terraform-mode-init))
+
+;; Ansible stuff
+(use-package ansible)
+(use-package ansible-vault)
+(use-package company-ansible)
+(use-package pyenv-mode)
+
+;; vterm config
+(use-package vterm
+  :hook
+  (vterm-mode . nb/vterm-setup)
+  :config
+  (defun nb/vterm-setup ()
+    (display-line-numbers-mode -1)
+    (setq-local evil-move-cursor-back nil)))
+
