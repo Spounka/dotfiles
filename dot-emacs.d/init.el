@@ -56,7 +56,6 @@
 (set-frame-font "Iosevka Nerd Font Mono-18" nil t)
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font Mono-18"))
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Package Manager
 (defvar bootstrap-version)
@@ -77,7 +76,10 @@
 
 (use-package straight
   :custom
-  (straight-use-package-by-default t))
+  (straight-use-package-by-default t)
+  (package-intialize)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+
 (use-package el-patch)
 
 (use-package undo-fu :ensure t)
