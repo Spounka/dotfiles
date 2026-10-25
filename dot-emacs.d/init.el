@@ -123,7 +123,6 @@
   :ensure t
   :custom
   (evil-collection-setup-minibuffer t)
-  :init
   (evil-collection-key-blacklist '("SPC"))
   :config
   (evil-collection-init))
