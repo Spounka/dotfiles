@@ -215,7 +215,6 @@
 (use-package lsp-mode
   :ensure t
   :config
-  (add-hook 'python-ts-mode-hook #'lsp)
   (add-hook 'c++-ts-mode-hook #'lsp)
   (add-hook 'c-ts-mode-hook #'lsp)
   (add-hook 'go-ts-mode-hook #'lsp)
@@ -228,11 +227,8 @@
 
 (use-package lsp-pyright
   :ensure t
-  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp)))
-        (python-ts-mode . (lambda ()
+  :custom (lsp-pyright-langserver-command "basedpyright")
+  :hook (python-ts-mode . (lambda ()
                           (require 'lsp-pyright)
                           (lsp))))  ; or lsp-deferred
 
