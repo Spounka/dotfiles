@@ -106,10 +106,6 @@
   (setq evil-shift-round nil)
 
   (evil-define-key 'normal 'global (kbd "gc") 'comment-line)
-  (evil-define-key nil 'global (kbd "C-j") 'evil-window-down)
-  (evil-define-key nil 'global (kbd "C-k") 'evil-window-up)
-  (evil-define-key nil 'global (kbd "C-l") 'evil-window-right)
-  (evil-define-key '(normal insert visual motion replace) 'global (kbd "C-h") 'evil-window-left)
   (evil-define-key 'normal 'global (kbd "<leader>-") 'dired)
   (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
   (evil-define-key 'normal 'global (kbd "<leader>op") 'treemacs)
@@ -151,7 +147,7 @@
 ;; eye candy
 (use-package nerd-icons :ensure t)
 (use-package doom-modeline :ensure t :init (doom-modeline-mode 1)
-			   :custom (setq doom-modeline-icon t))
+  :custom (setq doom-modeline-icon t))
 (use-package doom-themes
   :init
   (setq doom-themes-enable-bold t)
@@ -179,15 +175,15 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   :bind (:map markdown-mode-map
-         ("C-c C-e" . markdown-do)))
+              ("C-c C-e" . markdown-do)))
 
 (autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+  "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist
              '("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'" . markdown-mode))
 
 (autoload 'gfm-mode "markdown-mode"
-   "Major mode for editing GitHub Flavored Markdown files" t)
+  "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
 (with-eval-after-load 'markdown-mode
@@ -229,8 +225,8 @@
   :ensure t
   :custom (lsp-pyright-langserver-command "basedpyright")
   :hook (python-ts-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+                            (require 'lsp-pyright)
+                            (lsp))))  ; or lsp-deferred
 
 
 (add-to-list 'load-path "~/.emacs.d/tree-sitter/lib")
@@ -260,8 +256,8 @@
 ;; Org mode
 (setq org-hide-emphasis-markers t)
 (use-package org-bullets
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; Resize Org headings
 ;; (dolist (face '((org-level-1 . 1.35)
@@ -407,10 +403,10 @@
 
 ;; GDScript Mode
 (use-package gdscript-mode
-    :straight (gdscript-mode
-               :type git
-               :host github
-               :repo "godotengine/emacs-gdscript-mode"))
+  :straight (gdscript-mode
+             :type git
+             :host github
+             :repo "godotengine/emacs-gdscript-mode"))
 
 (defun gdscript-disable-code-action-lsp-config ()
   (setq-local lsp-modeline-code-actions-enable nil)
