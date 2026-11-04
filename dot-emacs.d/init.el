@@ -458,3 +458,45 @@
     (display-line-numbers-mode -1)
     (setq-local evil-move-cursor-back nil)))
 
+
+;; format all package
+
+(use-package format-all
+  :straight t
+  :commands (format-all-mode format-all-region-or-buffer)
+  :bind (("C-f" . format-all-region-or-buffer))
+  :hook
+  ((prog-mode . format-all-mode)
+   (markdown-mode . format-all-mode)
+   (gfm-mode . format-all-mode)
+   (latex-mode . format-all-mode)
+   (yaml-mode . format-all-mode)
+   (yaml-ts-mode . format-all-mode)
+   (format-all-mode . format-all-ensure-formatter))
+  :config
+  (setq format-all-show-errors 'errors)
+  (setq-default
+   format-all-formatters
+   '(("C"           clang-format)
+     ("C++"         clang-format)
+     ("Python"      ruff)
+     ("Go"          goimports)
+     ("Java"        google-java-format)
+     ("JavaScript"  prettier)
+     ("JSX"         prettier)
+     ("TypeScript"  prettier)
+     ("TSX"         prettier)
+     ("GDScript"    gdscript-formatter)
+     ("LaTeX"       latexindent)
+     ("Terraform"   terraform-fmt)
+     ("Shell"       (shfmt "-i" "4"))
+     ("JSON"        prettier)
+     ("YAML"        prettier)
+     ("HTML"        prettier)
+     ("CSS"         prettier)
+     ("Markdown"    prettier)
+     ("TOML"        taplo-fmt)
+     ("Emacs Lisp"  emacs-lisp))))
+
+(evil-define-key 'normal 'global
+  (kbd "<leader>f") #'format-all-region-or-buffer)
