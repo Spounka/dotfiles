@@ -28,7 +28,7 @@ build_treesit_module() {
     echo "[INFO] Building and installing $repo_name"
     make -C "$repo_name"
     echo "[INFO] Copying $repo_name/*.so to $(pwd)"
-    cp $(ls **/*.so) .
+    cp $(ls "$repo_name"/**/*.so) .
 }
 
 build_treesit_module "$TREESIT_GO_URL" "v0.23.4"
