@@ -63,6 +63,7 @@ bindsym $mod+mod1+control+m scratchpad show, move position center
 bindsym $mod+shift+control+s move scratchpad
 bindsym $mod+shift+g exec --no-startup-id emacsclient --eval "(emacs-everywhere)"
 bindsym $mod+semicolon exec --no-startup-id emoji-picker, move position center
+bindsym $mod+p title_window_icon toggle
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -282,6 +283,7 @@ for_window [class="Galculator" instance="galculator"] floating enable;
 for_window [class="qalculate-qt" instance="qalculate-qt"] floating enable;
 for_window [class="kdeconnect.daemon"] fullscreen disable, floating enable, border none, resize set 100 ppt 100 ppt, move position 0 0;
 focus_on_window_activation none
+for_window [all] title_window_icon on
 
 
 assign [class="thunderbird"] $ws2
