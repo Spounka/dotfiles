@@ -56,7 +56,6 @@
 (set-frame-font "Iosevka Nerd Font Mono-18" nil t)
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font Mono-18"))
 
-
 ;; Package Manager
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -77,9 +76,8 @@
 (use-package straight
   :custom
   (straight-use-package-by-default t)
-  (package-intialize)
+  (package-initialize)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
-
 (use-package el-patch)
 
 (use-package undo-fu :ensure t)
@@ -221,6 +219,7 @@
   (add-hook 'gdscript-mode-hook #'lsp-deferred)
   (add-hook 'latex-mode-hook #'lsp-deferred))
 
+(use-package pyenv-mode)
 (use-package lsp-pyright
   :ensure t
   :custom (lsp-pyright-langserver-command "basedpyright")
