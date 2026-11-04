@@ -286,8 +286,8 @@ focus_on_window_activation none
 for_window [all] title_window_icon on
 
 
-assign [class="thunderbird"] $ws2
-for_window [class="thunderbird" floating] move to workspace current
+assign [instance="Mail"] $ws9
+for_window [instance="Mail" floating] move to workspace current
 
 assign [class="discord"] $ws3
 assign [class="TelegramDesktop"] $ws3
