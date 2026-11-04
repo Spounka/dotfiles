@@ -500,3 +500,25 @@
 
 (evil-define-key 'normal 'global
   (kbd "<leader>f") #'format-all-region-or-buffer)
+
+;; django setup
+(with-eval-after-load 'lsp-mode
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection
+    (lsp-stdio-connection '("django-lsp"))
+    :activation-fn (lsp-activate-on "python")
+    :server-id 'django-lsp
+    :add-on? t)))
+
+(with-eval-after-load 'lsp-mode
+  ;; Replace Pyright with Pyrefly.
+  (add-to-list 'lsp-disabled-clients 'pyright)
+
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection
+    (lsp-stdio-connection '("pyrefly" "lsp"))
+    :activation-fn (lsp-activate-on "python")
+    :server-id 'pyrefly
+    :priority 3)))
