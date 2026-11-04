@@ -320,7 +320,7 @@ client.background       #FFFFFF
 # finds out, if available)
 bar {
   tray_output primary
-  position top
+  position bottom
   status_command i3status
   # status_command i3blocks
   i3bar_command i3bar
