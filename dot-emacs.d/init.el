@@ -16,6 +16,7 @@
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
 (electric-pair-mode 1)
+(setq dired-kill-when-opening-new-dired-buffer 1)
 
 ;; tabs
 (setq-default indent-tabs-mode nil)
