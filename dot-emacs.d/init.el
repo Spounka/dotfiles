@@ -523,3 +523,5 @@
     :activation-fn (lsp-activate-on "python")
     :server-id 'pyrefly
     :priority 3)))
+
+(use-package pyvenv :ensure t)
